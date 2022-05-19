@@ -8,6 +8,7 @@ class CentroInvestigacion(models.Model):
     latitud = models.CharField(max_length=20, unique=True)
     longitud = models.CharField(max_length=20, unique=True)
     telefono = models.CharField('Telefono', max_length=10, unique=True)
+    #Pinche jorge pendejo
     
     def __str__(self):
         return self.nombre 
