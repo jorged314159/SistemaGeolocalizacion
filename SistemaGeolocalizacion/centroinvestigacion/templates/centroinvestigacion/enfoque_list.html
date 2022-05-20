@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+    Lista de Enfoques
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>Enfoques de los Centros de Investigación del Estado de Zacatecas</h1>
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                <div class = "alert alert-danger">
+                    {{message}}
+                </div>
+            {% else %}
+                <div class = "alert alert-success">
+                    {{message}}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <table class = "table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for enfoque in object_list %}
+                <tr>
+                    <td>{{enfoque.nombre}}</td>
+                    <td>
+                        {% if enfoque.descripcion %}
+                            {{enfoque.descripcion}}
+                        {% else %}
+                            No cuenta con descripción
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class= "btn btn-primary btn-sm" href="{% url 'editar_enfoque' enfoque.id %}">Editar</a>
+                        <a class = "btn btn-danger btn-sm" href="{% url 'eliminar_enfoque' enfoque.id %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">
+                        <p>No existen enfoques registrados</p>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock contenido %}

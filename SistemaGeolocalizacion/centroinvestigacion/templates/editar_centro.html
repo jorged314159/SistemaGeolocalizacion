@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+
+{% block titulo %}
+    Editar Información
+{% endblock titulo %}
+    
+
+{% block contenido %}
+    <h1>Modificar Centro de Investigación</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class="btn btn-success"  type="submit" value = "Guardar">
+        <a class="btn btn-danger" href="{% url 'centros_lista' %}">Regresar</a>
+    </form>
+{% endblock contenido %}
+    
+   

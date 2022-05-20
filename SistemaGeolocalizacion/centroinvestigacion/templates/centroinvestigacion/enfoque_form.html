@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block titulo %}
+    {{accion}} Enfoque
+{% endblock titulo %}
+
+{% block contenido %}
+    <h1>{{accion}} Enfoque para Centro de Investigación</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input class= "btn btn-success" type="submit" 
+        {% if accion == 'Nuevo' %}
+            value = "Agregar"
+        {% else %}
+            value = "Guardar"
+        {% endif %}
+        >
+        <a class= "btn btn-danger" href="{% url 'enfoques_lista' %}">Regresar</a>
+    </form>
+{% endblock contenido %}
