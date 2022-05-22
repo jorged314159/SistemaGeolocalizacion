@@ -16,18 +16,18 @@ class PaginaInicio(LoginRequiredMixin, TemplateView):
 
 
 
-class ListaEnfoques(ListView):
+class ListaEnfoques(LoginRequiredMixin, ListView):
     model = Enfoque
  
     
-class NuevoEnfoqueView(CreateView):
+class NuevoEnfoqueView(LoginRequiredMixin, CreateView):
     model = Enfoque
     # fields = '__all__'
     form_class = FormEnfoque
     success_url = reverse_lazy('enfoques_lista')
     extra_context = {'accion':'Nuevo'}
     
-class EditarEnfoqueView(UpdateView):
+class EditarEnfoqueView(LoginRequiredMixin, UpdateView):
     model = Enfoque
     # fields = '__all__'
     form_class = FormEnfoque
@@ -35,7 +35,7 @@ class EditarEnfoqueView(UpdateView):
     extra_context = {'accion':'Editar'}
     
     
-class EliminarEnfoqueView(DeleteView):
+class EliminarEnfoqueView(LoginRequiredMixin, DeleteView):
     model = Enfoque
     success_url = reverse_lazy('enfoques_lista')
     
