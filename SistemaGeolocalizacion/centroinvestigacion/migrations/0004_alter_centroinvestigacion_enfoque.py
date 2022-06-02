@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='centroinvestigacion',
             name='enfoque',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING, to='centroinvestigacion.enfoque', verbose_name='Enfoque'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.DO_NOTHING,
+                                    to='centroinvestigacion.enfoque', verbose_name='Enfoque'),
         ),
     ]

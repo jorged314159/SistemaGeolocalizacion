@@ -36,7 +36,7 @@
           <section class="login_content">
             {% if form.errors %}
               <div class = "alert alert-warning">
-                  Datos de inicio de sesión incorrectos
+                  {{form.errors}}
               </div>
             {% endif %}
             <form method = "post">

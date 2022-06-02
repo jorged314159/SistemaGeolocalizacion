@@ -14,12 +14,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CentroInvestigacion',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=50, unique=True)),
-                ('direccion', models.CharField(max_length=150, unique=True, verbose_name='Direccion')),
+                ('direccion', models.CharField(max_length=150,
+                 unique=True, verbose_name='Direccion')),
                 ('latitud', models.CharField(max_length=20, unique=True)),
                 ('longitud', models.CharField(max_length=20, unique=True)),
-                ('telefono', models.CharField(max_length=10, unique=True, verbose_name='Telefono')),
+                ('telefono', models.CharField(max_length=10,
+                 unique=True, verbose_name='Telefono')),
             ],
         ),
     ]

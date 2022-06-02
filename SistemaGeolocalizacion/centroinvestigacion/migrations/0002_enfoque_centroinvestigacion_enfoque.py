@@ -14,15 +14,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Enfoque',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('nombre', models.CharField(max_length=50)),
-                ('descripcion', models.CharField(blank=True, max_length=150, null=True, verbose_name='Descripción')),
+                ('descripcion', models.CharField(blank=True,
+                 max_length=150, null=True, verbose_name='Descripción')),
             ],
         ),
         migrations.AddField(
             model_name='centroinvestigacion',
             name='enfoque',
-            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.DO_NOTHING, to='centroinvestigacion.enfoque', verbose_name='Enfoque'),
+            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.DO_NOTHING,
+                                    to='centroinvestigacion.enfoque', verbose_name='Enfoque'),
             preserve_default=False,
         ),
     ]
