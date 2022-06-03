@@ -18,7 +18,7 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('username', 'email', 'password', 'repassword')
 
-    username = forms.CharField(max_length=20, required=True)
+    username = forms.CharField(min_length=8, max_length=20, required=True)
     email = forms.EmailField(required=True)
     password = forms.CharField(
         min_length=8, widget=forms.PasswordInput(attrs={'class': 'form-control'}))

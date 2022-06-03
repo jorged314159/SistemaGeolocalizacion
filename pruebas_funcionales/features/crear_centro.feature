@@ -3,8 +3,8 @@ Característica: Crear un centro de investigación
     pueda ser vista posteriormente en el mapa y pueda ser ubicado.
 
     Antecedentes: Inicio de sesión
-    Dado que ingreso el usuario "alexdlcruz"
-    Y la contraseña "36172889"
+    Dado que ingreso el usuario "jorgeD"
+    Y la contraseña "jorgeRikudo"
     Cuando presiono el boton Iniciar Sesión
     Entonces puedo ver en la página principal el mensaje "BIENVENIDO AL SISTEMA"
 

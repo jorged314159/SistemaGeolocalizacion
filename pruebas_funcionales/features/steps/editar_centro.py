@@ -19,7 +19,7 @@ def step_impl(context, nombre):
     context.driver.find_element_by_xpath('//*[@id = "id_nombre"]').clear()
     context.driver.find_element_by_xpath('//*[@id = "id_nombre"]').send_keys(nombre)
 
-@when(u'presiono el boton Guardar')
+@when(u'le pico al botón Guardar')
 def step_impl(context):
     context.driver.find_element_by_xpath('/html/body/div/div/div[3]/form/input[2]').click()
 

@@ -4,13 +4,13 @@ Característica: Crear cuenta de admin
     Escenario: Datos válidos
     Dado que estoy en la ventana del login
     Y presiono el boton Registrarse
-    Y lleno el formulario con los siguientes datos nombre "alex", correo "alex@hotmail.com", contraseña "alex123" y la confirmación de contraseña "alex123"  
+    Y lleno el formulario con los siguientes datos nombre "alejandro", correo "alex@hotmail.com", contraseña "alex1234" y la confirmación de contraseña "alex1234"  
     Cuando presiono el boton Registrar
     Entonces me reedirige a la página de login
 
     Escenario: Datos repetidos
     Dado que estoy en la ventana del login
     Y presiono el boton Registrarse
-    Y lleno el formulario con los siguientes datos nombre "jorgeD", correo "jorged314159@gmail.com", contraseña "jorgeRikudo" y la confirmación de contraseña "jorgeRikudo"
+    Y lleno el formulario con los siguientes datos nombre "alejandro", correo "alex@hotmail.com", contraseña "jorgeRikudo" y la confirmación de contraseña "jorgeRikudo"
     Cuando presiono el boton Registrar
-    Entonces me muestra el mensaje "Datos de inicio de sesión incorrectos"
+    Entonces me muestra el mensaje "Ya existe un usuario con ese nombre."

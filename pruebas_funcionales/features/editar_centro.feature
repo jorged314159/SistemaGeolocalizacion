@@ -3,8 +3,8 @@ Característica: Modificar los datos de un centro de investigación
     para que esta se mantenga de manera actualizada.
 
     Antecedentes: Inicio de sesión
-    Dado que ingreso el usuario "alexdlcruz"
-    Y la contraseña "36172889"
+    Dado que ingreso el usuario "jorgeD"
+    Y la contraseña "jorgeRikudo"
     Cuando presiono el boton Iniciar Sesión
     Entonces puedo ver en la página principal el mensaje "BIENVENIDO AL SISTEMA"
 
@@ -13,5 +13,5 @@ Característica: Modificar los datos de un centro de investigación
     Y después al boton Lista
     Y luego le doy click al boton Editar del primer elemento de la lista
     Y modifico el nombre del centro de investigación a "Software"
-    Cuando presiono el boton Guardar
+    Cuando le pico al botón Guardar
     Entonces puedo ver la lista actualizada de los centros de investigación.

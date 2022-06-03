@@ -171,7 +171,8 @@ class TestCentrosInvestigacionModels(unittest.TestCase):
 
     def test_nombre_enfoque_duplicado(self):
         enfoque2 = Enfoque(
-            nombre="Ciencias de la Computacion"
+            nombre="Ciencias de la Computacion",
+            descripcion="Hacen cosas de hackers"
         )
         try:
             enfoque2.full_clean()

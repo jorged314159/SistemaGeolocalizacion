@@ -17,7 +17,7 @@ Característica: Eliminar un enfoque
 
     Escenario: Eliminacion fallida
     Dado que me encuentro en la lista de enfoques y presiono el boton Eliminar del primer elemento de la lista
-    Y aparece el mensaje de confirmación "¿Deseas eliminar el enfoque Ciencias basicas?"
+    Y aparece el mensaje de confirmación "¿Deseas eliminar el enfoque TICS?"
     Y además este enfoque tiene algun centro de investigacion asociado
     Cuando presiono el boton Eliminar
     Entonces me redirije a la lista de enfoques y puedo ver el mensaje de error "No se puede eliminar el enfoque, tiene centros de investigacion agregados".

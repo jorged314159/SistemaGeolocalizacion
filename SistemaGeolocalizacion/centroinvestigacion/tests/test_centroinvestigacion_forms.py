@@ -88,7 +88,7 @@ class TestFormCentroInvestigacion(unittest.TestCase):
         self.data_Centro['direccion'] = 'a'*151
         form = FormCentroInvestigacion(self.data_Centro)
         self.assertEqual(form.errors['direccion'], [
-                         'Asegúrese de que este valor tenga' +  
+                         'Asegúrese de que este valor tenga' +
                          ' como máximo 150 caracteres (tiene 151).'])
 
     def test_centro_form_direccion_duplicada(self):

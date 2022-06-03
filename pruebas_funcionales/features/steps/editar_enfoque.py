@@ -9,10 +9,12 @@ def step_impl(context):
     
 
 
-@given(u'cambio el nombre del enfoque a "{nombre}"')
-def step_impl(context, nombre):
+@given(u'cambio el nombre del enfoque a "{nombre}" y la descripción "{desc}"')
+def step_impl(context, nombre, desc):
     context.driver.find_element_by_name('nombre').clear()
     context.driver.find_element_by_name('nombre').send_keys(nombre)
+    context.driver.find_element_by_name('descripcion').clear()
+    context.driver.find_element_by_name('descripcion').send_keys(desc)
     
 
 

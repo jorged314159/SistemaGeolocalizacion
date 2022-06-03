@@ -110,6 +110,6 @@ class TestUserForm(unittest.TestCase):
         self.assertFalse(form.is_valid())
 
     def test_usuario_form_nombre_min_caracteres(self):
-        self.data['username'] = 'alex'
+        self.data['username'] = 'jorge'
         form = UserForm(self.data)
         self.assertFalse(form.is_valid())

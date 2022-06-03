@@ -11,6 +11,6 @@ Característica: Editar informacion de un enfoque
 
     Escenario: Editar datos
     Dado que me encuentro en la lista de enfoques y presiono el boton Editar del primer elemento de la lista
-    Y cambio el nombre del enfoque a "TICS"
+    Y cambio el nombre del enfoque a "TICS" y la descripción "les dan tocs"
     Cuando presiono el boton Guardar
     Entonces puedo ver en la lista el nuevo nombre asignado "TICS"
