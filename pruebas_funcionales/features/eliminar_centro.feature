@@ -2,8 +2,8 @@ Característica: Eliminar un centro de investigación de una lista
     Yo como administrador quiero eliminar un centro de investigación cuando ya no sea requerido.
 
     Antecedentes: Inicio de sesión
-    Dado que ingreso el usuario "jorgeD"
-    Y la contraseña "jorgeRikudo"
+    Dado que ingreso el usuario "alexdlcruz"
+    Y la contraseña "36172889"
     Cuando presiono el boton Iniciar Sesión
     Entonces puedo ver en la página principal el mensaje "BIENVENIDO AL SISTEMA"
 
