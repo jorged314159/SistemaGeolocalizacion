@@ -21,6 +21,11 @@
     <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{% static 'build/css/custom.min.css' %}" rel="stylesheet">
+
+    {% block headers %}
+    
+    {% endblock headers %}
+
   </head>
 
   <body class="nav-md">
@@ -111,7 +116,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            {% comment %} Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a> {% endcomment %}
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -125,6 +130,10 @@
     <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <!-- Custom Theme Scripts -->
     <script src="{% static 'build/js/custom.min.js' %}"></script>
+
+    {% block scripts %}
+      
+    {% endblock scripts %}
 	
   </body>
 </html>

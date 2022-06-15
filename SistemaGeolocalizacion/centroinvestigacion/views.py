@@ -40,3 +40,12 @@ def editar_centros(request, id):
     else:
         form = FormCentroInvestigacion(instance=centro)
     return render(request, 'editar_centro.html', {'form': form})
+
+@login_required
+def detalles_centros(request, id):
+    if request.method == 'GET':
+        centro = CentroInvestigacion.objects.get(id=id)
+        # print(centro.nombre + centro.direccion)
+        return render(request, 'detalles_centro.html', {'centros': centro})
+
+        

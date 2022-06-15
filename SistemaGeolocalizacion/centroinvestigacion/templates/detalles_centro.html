@@ -1,0 +1,93 @@
+{% extends 'index.html' %}
+
+{% block titulo %}
+    Detalles de Centro de Investigación
+{% endblock titulo %}
+
+{% block headers %}
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style>
+        #map{
+            height: 400px;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+
+{% endblock headers %}
+
+{% block contenido %}
+    <h1>Detalles sobre {{centros.nombre}}</h1>
+    <table class = "table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+                <th>Teléfono</th>
+                <th>Enfoque</th>
+                <th>Página</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{centros.nombre}}</td>
+                <td>{{centros.direccion}}</td>
+                <td>{{centros.latitud}}</td>
+                <td>{{centros.longitud}}</td>
+                <td>{{centros.telefono}}</td>
+                <td>{{centros.enfoque.nombre}}</td>
+                <td>{{centros.sitioWeb}}</td>
+                <td>{{centros.imagen}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class = "col-sm-8 col-lg-12">
+        <div id = "map"></div>    
+    </div>
+{% endblock contenido %}
+
+{% block scripts %}
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYdQoF_U7nq8XhE97DNBPUDMxYDCsUCtI&callback=initMap&v=weekly"
+    async
+></script>
+<script>
+
+    let marker;
+
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: {{centros.latitud}}, lng: {{centros.longitud}} },
+          zoom: 16,
+        });
+    
+
+        marker = new google.maps.Marker({
+            map,
+            draggable: false,
+            animation: google.maps.Animation.BOUNCE,
+            position: { lat: {{centros.latitud}}, lng: {{centros.longitud}} },
+        });
+        marker.addListener("dragend", toggleBounce);
+    }
+
+    function toggleBounce() {
+
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        $('#id_latitud').val(marker.position.lat);
+        $('#id_longitud').val(marker.position.lng);
+
+    }
+    
+    window.initMap = initMap;
+
+</script>    
+    
+
+{% endblock scripts %}

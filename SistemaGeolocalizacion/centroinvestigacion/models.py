@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class CentroInvestigacion(models.Model):
     nombre = models.CharField(max_length=50, unique=True, blank=False)
@@ -13,6 +11,9 @@ class CentroInvestigacion(models.Model):
         'Telefono', max_length=10, unique=True, blank=False)
     enfoque = models.ForeignKey("centroinvestigacion.Enfoque", verbose_name="Enfoque",
                                 on_delete=models.DO_NOTHING, null=True, blank=True)
+    sitioWeb = models.CharField(max_length=100, unique=True, blank=True)
+    imagen = models.ImageField(null = True, blank = True, upload_to = 'foto/')
+    
 
     def __str__(self):
         return self.nombre

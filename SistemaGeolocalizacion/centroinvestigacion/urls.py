@@ -8,6 +8,8 @@ urlpatterns = [
     path('centro/editar/<int:id>', views.editar_centros, name='editar_centro'),
     path('centro/eliminar/<int:id>',
          views.eliminar_centros, name='eliminar_centro'),
+    path('centro/detalles/<int:id>', views.detalles_centros, name='detalles_centro'),
+    
 
     path('enfoques', views_enfoque.ListaEnfoques.as_view(), name='enfoques_lista'),
     path('enfoques/nuevo', views_enfoque.NuevoEnfoqueView.as_view(),

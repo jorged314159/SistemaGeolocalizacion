@@ -12,12 +12,14 @@ class FormCentroInvestigacion(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'direccion': forms.TextInput(attrs={'class': 'form-control',
                                                 'placeholder': 'Calle, #No, Colonia, C.P, Municipio'}),
-            'latitud': forms.TextInput(attrs={'class': 'form-control'}),
-            'longitud': forms.TextInput(attrs={'class': 'form-control'}),
+            'latitud': forms.TextInput(attrs={'class': 'form-control', 'readonly' : 'true'}),
+            'longitud': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'true'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control'}),
             'enfoque': forms.Select(attrs={'class': 'form-control'}),
-
+            'sitioWeb': forms.TextInput(attrs={'class': 'form-control'}),
         }
+        imagen = forms.ImageField(widget=forms.ImageField())
+        
 
 
 class FormEnfoque(forms.ModelForm):
