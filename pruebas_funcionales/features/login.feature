@@ -4,8 +4,8 @@ Característica: Login del sistema
     para realizar las actividades correspondientes
 
     Escenario: Credenciales validas
-    Dado que ingreso el usuario "jorgeD" 
-    Y la contraseña "jorgeRikudo"
+    Dado que ingreso el usuario "alexdlcruz" 
+    Y la contraseña "36172889"
     Cuando presiono el boton Iniciar Sesión
     Entonces puedo ver en la página principal el mensaje "BIENVENIDO AL SISTEMA"
 

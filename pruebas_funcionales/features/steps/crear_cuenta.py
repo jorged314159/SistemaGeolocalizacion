@@ -5,13 +5,13 @@ import time
 def step_impl(context):
     context.driver.get(context.url + '/usuarios/entrar')
     context.driver.find_element_by_xpath('/html/body/div/div/div/section/form/h1').text
-    time.sleep(5)
+    time.sleep(3)
 
 
 @given(u'presiono el boton Registrarse')
 def step_impl(context):
     context.driver.find_element_by_xpath('/html/body/div/div/div/section/form/div[5]/p/a').click()
-    time.sleep(5)
+    time.sleep(3)
 
 @given(u'lleno el formulario con los siguientes datos nombre "{nombre}", correo "{email}", contraseña "{contra}" y la confirmación de contraseña "{conf_contra}"')
 def step_impl(context, nombre, email, contra, conf_contra):
@@ -25,13 +25,13 @@ def step_impl(context, nombre, email, contra, conf_contra):
 @when(u'presiono el boton Registrar')
 def step_impl(context):
     context.driver.find_element_by_xpath('/html/body/div/div/div/section/form/div[5]/button').click()
-    time.sleep(5)
+    time.sleep(3)
 
 @then(u'me reedirige a la página de login')
 def step_impl(context):
     # context.driver.get(context.url + '/usuarios/entrar')
     context.driver.find_element_by_xpath('/html/body/div/div/div/section/form/h1').text
-    time.sleep(5)
+    time.sleep(3)
 
 
 @then(u'me muestra el mensaje "{esperado}"')
