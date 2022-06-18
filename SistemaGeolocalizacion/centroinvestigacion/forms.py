@@ -20,6 +20,10 @@ class FormCentroInvestigacion(forms.ModelForm):
         }
         imagen = forms.ImageField(widget=forms.ImageField())
         
+    # def clean(self):
+    #     print(self.cleaned_data)
+    #     return self.cleaned_data
+        
 
 
 class FormEnfoque(forms.ModelForm):

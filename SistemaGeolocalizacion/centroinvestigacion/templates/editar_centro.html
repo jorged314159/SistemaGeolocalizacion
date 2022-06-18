@@ -25,7 +25,7 @@
     <h1>Modificar Centro de Investigación</h1>
     <div class = "row">
         <div class = "col-sm-6 col-lg-4">
-            <form action="" method="post">
+            <form action="" method="post" enctype = "multipart/form-data">
                 {% csrf_token %}
                 {{form.as_p}}
                 <input class="btn btn-success"  type="submit" value = "Guardar">
@@ -36,7 +36,6 @@
             <div id = "map"></div>    
         </div>
     </div>
-    {% comment %} <p>{{centros.nombre}} y algo mas</p> {% endcomment %}
     
 {% endblock contenido %}
     
@@ -50,18 +49,23 @@
 
     let marker;
 
+    latitudE = $('#id_latitud').val()
+    longitudE = $('#id_longitud').val()
+
     function initMap() {
+
+
         const map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: 22.766050981989335, lng: -102.5697492675781 },
-          zoom: 11,
+          center: { lat: parseFloat(latitudE), lng: parseFloat(longitudE) },
+          zoom: 16,
         });
-    
+        
 
         marker = new google.maps.Marker({
             map,
             draggable: true,
             animation: google.maps.Animation.BOUNCE,
-            position: { lat: 22.766050981989335, lng: -102.5697492675781 },
+            position: { lat: parseFloat($('#id_latitud').val()), lng: parseFloat( $('#id_longitud').val()) },
         });
         marker.addListener("dragend", toggleBounce);
     }

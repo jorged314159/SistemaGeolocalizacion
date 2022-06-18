@@ -120,6 +120,8 @@ LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('bienvenida')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
+#urls para archivos media de la base de datos
+
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

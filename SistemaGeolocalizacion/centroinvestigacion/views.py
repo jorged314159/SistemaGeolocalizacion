@@ -20,7 +20,7 @@ def eliminar_centros(request, id):
 @login_required
 def nuevo_centro(request):
     if request.method == 'POST':
-        form = FormCentroInvestigacion(request.POST)
+        form = FormCentroInvestigacion(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('centros_lista')
@@ -33,7 +33,7 @@ def nuevo_centro(request):
 def editar_centros(request, id):
     centro = CentroInvestigacion.objects.get(id=id)
     if request.method == 'POST':
-        form = FormCentroInvestigacion(request.POST, instance=centro)
+        form = FormCentroInvestigacion(request.POST, request.FILES, instance=centro)
         if form.is_valid():
             form.save()
             return redirect('centros_lista')

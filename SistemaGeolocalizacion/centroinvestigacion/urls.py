@@ -1,5 +1,7 @@
 from django.urls import path
 from centroinvestigacion import views, views_enfoque
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views_enfoque.PaginaInicio.as_view(), name='bienvenida'),
@@ -18,4 +20,4 @@ urlpatterns = [
          views_enfoque.EditarEnfoqueView.as_view(), name='editar_enfoque'),
     path('enfoques/eliminar/<int:pk>',
          views_enfoque.EliminarEnfoqueView.as_view(), name='eliminar_enfoque'),
-]
+] +  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
