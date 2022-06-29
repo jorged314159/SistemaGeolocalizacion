@@ -15,6 +15,16 @@ def eliminar_centros(request, id):
     # print(CentroInvestigacion.objects.get(id = id))
     CentroInvestigacion.objects.get(id=id).delete()
     return redirect('centros_lista')
+    # context = {}
+    # centro = CentroInvestigacion.objects.get(id=id)
+    # if centro:
+    #     try:
+    #        CentroInvestigacion.objects.get(id=id).delete()
+    #     except:
+    #         context['error'] = 'No se pudo eliminar el centro de investigación'
+    # else:
+    #     pass
+    # return render(request, 'eliminar_centro.html', {'centros': centro})
 
 
 @login_required
