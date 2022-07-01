@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from centroinvestigacion.models import CentroInvestigacion
 from centroinvestigacion.forms import FormCentroInvestigacion
 from django.contrib.auth.decorators import login_required
@@ -12,19 +13,13 @@ def lista_centros(request):
 
 @login_required
 def eliminar_centros(request, id):
-    # print(CentroInvestigacion.objects.get(id = id))
-    CentroInvestigacion.objects.get(id=id).delete()
-    return redirect('centros_lista')
-    # context = {}
-    # centro = CentroInvestigacion.objects.get(id=id)
-    # if centro:
-    #     try:
-    #        CentroInvestigacion.objects.get(id=id).delete()
-    #     except:
-    #         context['error'] = 'No se pudo eliminar el centro de investigación'
-    # else:
-    #     pass
-    # return render(request, 'eliminar_centro.html', {'centros': centro})
+    centro = CentroInvestigacion.objects.get(id=id)
+    if request.method == 'POST':
+        centro.delete()
+        messages.success(request, 'Se eliminó correctamente el centro de investigación')
+        return redirect('centros_lista')
+    return render(request, 'eliminar_centro.html', {'centros': centro})
+    
 
 
 @login_required
@@ -33,6 +28,7 @@ def nuevo_centro(request):
         form = FormCentroInvestigacion(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Se agregó correctamente el centro de investigación')
             return redirect('centros_lista')
     else:
         form = FormCentroInvestigacion()
@@ -46,6 +42,7 @@ def editar_centros(request, id):
         form = FormCentroInvestigacion(request.POST, request.FILES, instance=centro)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Se editó correctamente la información')
             return redirect('centros_lista')
     else:
         form = FormCentroInvestigacion(instance=centro)
