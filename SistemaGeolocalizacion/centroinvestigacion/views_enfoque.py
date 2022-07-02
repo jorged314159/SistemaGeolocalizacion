@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 
 from centroinvestigacion.models import Enfoque, CentroInvestigacion
 from centroinvestigacion.forms import FormEnfoque
@@ -18,20 +19,22 @@ class ListaEnfoques(LoginRequiredMixin, ListView):
     model = Enfoque
 
 
-class NuevoEnfoqueView(LoginRequiredMixin, CreateView):
+class NuevoEnfoqueView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Enfoque
     # fields = '__all__'
     form_class = FormEnfoque
     success_url = reverse_lazy('enfoques_lista')
     extra_context = {'accion': 'Nuevo'}
+    success_message = "Se agregó el enfoque de manera exitosa"
 
 
-class EditarEnfoqueView(LoginRequiredMixin, UpdateView):
+class EditarEnfoqueView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Enfoque
     # fields = '__all__'
     form_class = FormEnfoque
     success_url = reverse_lazy('enfoques_lista')
     extra_context = {'accion': 'Editar'}
+    success_message = "Se editó la información de manera exitosa"
 
 
 class EliminarEnfoqueView(LoginRequiredMixin, DeleteView):
