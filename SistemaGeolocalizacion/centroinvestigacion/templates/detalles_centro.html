@@ -26,7 +26,8 @@
             <a class="btn btn-danger btn-sm" href="{% url 'centros_lista' %}">Regresar</a>
         </div>
     </div>
-    <table class = "table">
+    <div class = "table-responsive-sm">
+        <table class = "table table-bordered">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -47,14 +48,28 @@
                 <td>{{centros.longitud}}</td>
                 <td>{{centros.telefono}}</td>
                 <td>{{centros.enfoque.nombre}}</td>
-                <td>{{centros.sitioWeb}}</td>
+                
+                {% if centros.sitioWeb %}
+                    <td>{{centros.sitioWeb}}</td>
+                {% else %}
+                    <td>No cuenta con sitio web</td>    
+                {% endif %}
+                    
                 <td>
-                    <img src = "{{MEDIA_URL}}{{centros.imagen}}" height = 100px width = 100px/>
+                    
+                    {% if centros.imagen %}
+                        <img src = "{{centros.imagen.url}}" width = 100% alt = ""/>
+                    {% else %}
+                        <p>No existe imagen del centro de investigacion</p>
+                    {% endif %}
+                        
                 </td>
             </tr>
         </tbody>
     </table>
-    <div class = "col-sm-8 col-lg-12">
+    </div>
+    <div class = "col-md-12">
+        <h2>Ubicación Geográfica</h2>
         <div id = "map"></div>    
     </div>
 {% endblock contenido %}
