@@ -4,5 +4,5 @@ from busquedas.models import Busqueda
 # Create your views here.
 def buscar_centro(request):
     busqueda = Busqueda()
-    return render(request, 'inicio.html', {'busquedas': busqueda})
+    return render(request, 'buscar_centro.html', {'busquedas': busqueda})
     

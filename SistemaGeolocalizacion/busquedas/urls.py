@@ -5,4 +5,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.buscar_centro, name='busqueda_centros'),
+    path('', views.buscar_centro, name='busqueda_centros'),
+
 ]
