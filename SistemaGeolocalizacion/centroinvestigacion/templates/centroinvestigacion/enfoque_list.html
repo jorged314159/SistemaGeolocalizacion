@@ -22,14 +22,16 @@
     <table class = "table table-striped">
         <thead>
             <tr>
-                <th>Nombre</th>
+                <th>Area</th>
+                <th>Subarea</th>
                 <th>Descripción</th>
             </tr>
         </thead>
         <tbody>
             {% for enfoque in object_list %}
                 <tr>
-                    <td>{{enfoque.nombre}}</td>
+                    <td>{{enfoque.area}}</td>
+                    <td>{{enfoque.subarea}}</td>
                     <td>
                         {% if enfoque.descripcion %}
                             {{enfoque.descripcion}}

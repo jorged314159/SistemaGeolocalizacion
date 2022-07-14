@@ -10,19 +10,20 @@ class FormCentroInvestigacion(forms.ModelForm):
 
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
-            'direccion': forms.TextInput(attrs={'class': 'form-control',
-                                                'placeholder': 'Calle, #No, Colonia, C.P, Municipio'}),
+            'calle': forms.TextInput(attrs={'class': 'form-control'}),
+            'colonia': forms.TextInput(attrs={'class': 'form-control'}),
+            'numero': forms.TextInput(attrs={'class': 'form-control'}),
+            'cp': forms.TextInput(attrs={'class': 'form-control'}),                                                
+            'estado': forms.Select(attrs={'class': 'form-control'}),
+            'municipio': forms.Select(attrs={'class': 'form-control'}),
             'latitud': forms.TextInput(attrs={'class': 'form-control', 'readonly' : 'true'}),
             'longitud': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'true'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control'}),
-            'enfoque': forms.Select(attrs={'class': 'form-control'}),
+            'areaEnfoque': forms.Select(attrs={'class': 'form-control'}),
+            'subAreaEnfoque': forms.Select(attrs={'class': 'form-control'}),
             'sitioWeb': forms.TextInput(attrs={'class': 'form-control'}),
         }
         imagen = forms.ImageField(widget=forms.ImageField())
-        
-    # def clean(self):
-    #     print(self.cleaned_data)
-    #     return self.cleaned_data
         
 
 
@@ -33,7 +34,8 @@ class FormEnfoque(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'area': forms.Select(attrs={'class': 'form-control'}),
+            'subArea': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
 
         }
