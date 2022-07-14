@@ -21,7 +21,7 @@ class CentroInvestigacion(models.Model):
         'Telefono', max_length=10, unique=True, blank=False)
     areaEnfoque = models.ForeignKey("centroinvestigacion.Area", verbose_name="Area",
                                 on_delete=models.DO_NOTHING, null=False, blank=False)
-    subAreaEnfoque = models.ForeignKey("centroinvestigacion.Enfoque", verbose_name="Enfoque",
+    subAreaEnfoque = models.ForeignKey("centroinvestigacion.Enfoque", verbose_name="Subarea",
                                 on_delete=models.DO_NOTHING, null=False, blank=False)
     sitioWeb = models.CharField(max_length=100, unique=True, blank=True)
     imagen = models.ImageField(null = True, blank = True, upload_to = 'foto/')

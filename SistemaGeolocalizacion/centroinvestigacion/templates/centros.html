@@ -32,8 +32,8 @@
             {% for centro in centros %}
                 <tr>
                     <td>{{centro.nombre}}</td>
-                    <td>{{centro.Area.areaEnfoque}}</td>
-                    <td>{{centro.enfoque.subAreaEnfoque}}</td>
+                    <td>{{centro.areaEnfoque}}</td>
+                    <td>{{centro.subAreaEnfoque}}</td>
                     <td>
                         <a class = "btn btn-primary btn-sm" href="{% url 'editar_centro' centro.id %}">Editar</a>
                         <a class = "btn btn-warning btn-sm" href="{% url 'detalles_centro' centro.id %}">Ver detalles</a>

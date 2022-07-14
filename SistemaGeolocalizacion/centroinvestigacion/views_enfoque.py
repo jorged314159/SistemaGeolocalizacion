@@ -43,7 +43,7 @@ class EliminarEnfoqueView(LoginRequiredMixin, DeleteView):
 
     def form_valid(self, form):
         self.object = self.get_object()
-        if CentroInvestigacion.objects.filter(enfoque=self.object):
+        if CentroInvestigacion.objects.filter(subAreaEnfoque=self.object):
             messages.error(
                 self.request, 'No se puede eliminar el enfoque, ' +
                 'tiene centros de investigacion agregados')

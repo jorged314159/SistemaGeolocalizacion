@@ -35,7 +35,8 @@
                 <th>Latitud</th>
                 <th>Longitud</th>
                 <th>Teléfono</th>
-                <th>Enfoque</th>
+                <th>Area</th>
+                <th>Subarea</th>
                 <th>Página</th>
                 <th>Imagen</th>
             </tr>
@@ -43,12 +44,19 @@
         <tbody>
             <tr>
                 <td>{{centros.nombre}}</td>
-                <td>{{centros.direccion}}</td>
+                <td>
+                    {{centros.calle}}
+                    {{centros.colonia}}
+                    {{centros.numExterior}}
+                    {{centros.cp}}
+                    {{centros.estado}}
+                    {{centros.municipio}}
+                </td>
                 <td>{{centros.latitud}}</td>
                 <td>{{centros.longitud}}</td>
                 <td>{{centros.telefono}}</td>
-                <td>{{centros.enfoque.area}}</td>
-                
+                <td>{{centros.areaEnfoque}}</td>     
+                <td>{{centros.subAreaEnfoque}}</td>     
                 {% if centros.sitioWeb %}
                     <td>{{centros.sitioWeb}}</td>
                 {% else %}
