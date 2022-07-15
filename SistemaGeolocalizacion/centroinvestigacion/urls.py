@@ -5,11 +5,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views_enfoque.PaginaInicio.as_view(), name='bienvenida'),
-    path('centros', views.lista_centros, name='centros_lista'),
-    path('centro/nuevo', views.nuevo_centro, name='nuevo_centro'),
-    path('centro/editar/<int:id>', views.editar_centros, name='editar_centro'),
-    path('centro/eliminar/<int:id>',
-         views.eliminar_centros, name='eliminar_centro'),
+    path('centros', views.ListaCentros.as_view(), name='centros_lista'),
+    path('centro/nuevo', views.NuevoCentro.as_view(), name='nuevo_centro'),
+    path('centro/editar/<int:pk>', views.EditarCentro.as_view(), name='editar_centro'),
+    path('centro/eliminar/<int:pk>',
+         views.EliminarCentro.as_view(), name='eliminar_centro'),
     path('centro/detalles/<int:id>', views.detalles_centros, name='detalles_centro'),
     
 

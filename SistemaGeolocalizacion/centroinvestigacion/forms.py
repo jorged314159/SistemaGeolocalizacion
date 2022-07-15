@@ -12,7 +12,7 @@ class FormCentroInvestigacion(forms.ModelForm):
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'calle': forms.TextInput(attrs={'class': 'form-control'}),
             'colonia': forms.TextInput(attrs={'class': 'form-control'}),
-            'numero': forms.TextInput(attrs={'class': 'form-control'}),
+            'numExterior': forms.TextInput(attrs={'class': 'form-control'}),
             'cp': forms.TextInput(attrs={'class': 'form-control'}),                                                
             'estado': forms.TextInput(attrs={'class': 'form-control'}),
             'municipio': forms.TextInput(attrs={'class': 'form-control'}),
@@ -35,7 +35,7 @@ class FormEnfoque(forms.ModelForm):
 
         widgets = {
             'area': forms.Select(attrs={'class': 'form-control'}),
-            'subArea': forms.TextInput(attrs={'class': 'form-control'}),
+            'subarea': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': forms.TextInput(attrs={'class': 'form-control'}),
 
         }

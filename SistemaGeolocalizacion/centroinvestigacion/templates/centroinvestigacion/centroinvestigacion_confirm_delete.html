@@ -3,7 +3,7 @@
 {% block contenido %}
     <form method = "post">
         {% csrf_token %}
-        <p>¿Deseas eliminar el centro <b>{{centros.nombre}}</b>?</p>
+        <p>¿Deseas eliminar el centro <b>{{object}}</b>?</p>
         <input type="submit" value="Eliminar" class="btn btn-danger">
         <a class = "btn btn-secondary" href="{% url 'centros_lista' %}">Regresar</a>
     </form>

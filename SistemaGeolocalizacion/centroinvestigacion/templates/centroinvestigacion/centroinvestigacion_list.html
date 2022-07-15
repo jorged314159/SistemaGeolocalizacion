@@ -23,13 +23,13 @@
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Area</th>
+                <th>Area de Investigación</th>
                 <th>Subarea</th>
                 <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
-            {% for centro in centros %}
+            {% for centro in object_list %}
                 <tr>
                     <td>{{centro.nombre}}</td>
                     <td>{{centro.areaEnfoque}}</td>
