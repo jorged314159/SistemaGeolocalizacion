@@ -19,25 +19,94 @@
 {% endblock headers %}
 
 {% block contenido %}
-    <h1>{{accion}} Centro de Investigación</h1>
     <div class = "row">
-        <div class = "col-sm-8 col-lg-4">
+        <div class="card-body d-flex justify-content-between align-items-center">
+            <div class = "col">
+                <h1>{{accion}} Centro de Investigación</h1>
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "col-sm-10 col-lg-10">
             <form action="" method="post" enctype = "multipart/form-data">
                 {% csrf_token %}
-                {{form.as_p}}
-                <input class= "btn btn-success" type="submit"
-                {% if accion == 'Nuevo' %}
-                    value = "Agregar"
-                {% else %}
-                    value = "Guardar"
-                {% endif %}
-                >
-                <a class= "btn btn-danger" href="{% url 'centros_lista' %}">Regresar</a>
+                {% comment %} {{form.as_p}} {% endcomment %}
+                <div class = "well well-lg">
+                    <h6><b>Datos del Centro:</b></h6>
+                    <div class = "row">
+                        <div class = "col">{{form.nombre.label}}: {{form.nombre}}</div>
+                        <div class = "col">{{form.telefono.label}}: {{form.telefono}}</div>
+                    </div>
+                    <p></p>
+                    <div class = "row">
+                        <div class = "col">{{form.areaEnfoque.label}}: 
+                            <select name="areaEnfoque" id="id_areaEnfoque">
+                                <option value="0">------------</option>
+                                {% for area in areaEnfoque %}
+                                    <option value="{{area.id}}">{{area.nombre}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class = "col">{{form.subAreaEnfoque.label}}: 
+                            <select name="subAreaEnfoque" id="id_subAreaEnfoque">
+                                <option value="0">------------</option>
+                                {% for subarea in subAreaEnfoque %}
+                                    <option value="{{subarea.id}}" data-chained = "{{subarea.area.id}}">{{subarea.subarea}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class = "row">
+                        <div class = "col">{{form.sitioWeb.label}}: {{form.sitioWeb}}</div>
+                        <div class="col">{{form.imagen.label}}: {{form.imagen}}</div>
+                    </div>
+                    <p></p>
+                    <h6><b>Domicilio:</b></h6>
+                    <div class = "row">
+                        <div class = "col">{{form.calle.label}}: {{form.calle}}</div>
+                        <div class = "col">{{form.numExterior.label}}: {{form.numExterior}}</div>
+                    </div>
+                    <p></p>
+                    <div class = "row">
+                        <div class = "col">{{form.colonia.label}}: {{form.colonia}}</div>
+                        <div class = "col">{{form.cp.label}}: {{form.cp}}</div>
+                    </div>
+                    <p></p>
+                    <div class = "row">
+                        <div class = "col">{{form.estado.label}}: {{form.estado}}</div>
+                        <div class = "col">{{form.municipio.label}}: {{form.municipio}}</div>
+                    </div>
+                    
+                </div>
+                
+                <div class = "well">
+                    <h6><b>Coordenadas:</b></h6>
+                        <div class = "row">
+                            <div class = "col">{{form.latitud.label}}: {{form.latitud}}</div>
+                            <div class = "col">{{form.longitud.label}}: {{form.longitud}}</div>
+                        </div>
+                        <p></p>
+                    <div id = "map"></div>
+                </div>
+
+                <div class = "col">
+                    <input class= "btn btn-success" type="submit"
+                    {% if accion == 'Nuevo' %}
+                        value = "Agregar"
+                    {% else %}
+                        value = "Guardar"
+                    {% endif %}
+                    >
+                    <a class= "btn btn-danger" href="{% url 'centros_lista' %}">Regresar</a>
+                </div>
             </form>
+
+            
+            
+           
         </div>
-        <div class = "col-sm-6 col-lg-8">
-            <div id = "map"></div>    
-        </div>
+        
     </div>
 {% endblock contenido %}
 
@@ -104,5 +173,11 @@
 
 </script>    
     
-
+<script>
+    $(function(){
+        $("#id_areaEnfoque").val("{{ obj.subAreaEnfoque.area.id }}").change();
+        $("#id_subAreaEnfoque").val("{{ obj.subAreaEnfoque.id }}").change();
+        $("#id_subAreaEnfoque").chained("#id_areaEnfoque");
+    });
+</script>
 {% endblock scripts %}

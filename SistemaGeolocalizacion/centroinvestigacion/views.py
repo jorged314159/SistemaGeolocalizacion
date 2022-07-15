@@ -1,7 +1,6 @@
-from email import message
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from centroinvestigacion.models import CentroInvestigacion
+from centroinvestigacion.models import Area, Enfoque, CentroInvestigacion
 from centroinvestigacion.forms import FormCentroInvestigacion
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, TemplateView
@@ -26,12 +25,34 @@ class NuevoCentro(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     extra_context = {'accion': 'Nuevo'}
     success_message = "Se agregó el centro de investigación correctamente"
 
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        context = super(NuevoCentro, self).get_context_data(**kwargs)
+        context["areaEnfoque"] = Area.objects.all()
+        context["subAreaEnfoque"] = Enfoque.objects.all()
+        return context
+    
+
+
 class EditarCentro(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = CentroInvestigacion
     form_class = FormCentroInvestigacion
     success_url = reverse_lazy('centros_lista')
     extra_context = {'accion' : 'Editar'}
     success_message = "Se editó la información correctamente"
+
+    context_object_name = 'obj'
+
+    def get_context_data(self, **kwargs):
+        pk = self.kwargs.get('pk')
+        context = super(EditarCentro, self).get_context_data(**kwargs)
+        context["areaEnfoque"] = Area.objects.all()
+        context["subAreaEnfoque"] = Enfoque.objects.all()
+        context["obj"] = CentroInvestigacion.objects.filter(pk=pk).first()
+        return context
+
+
 
 class EliminarCentro(LoginRequiredMixin, DeleteView):
     model = CentroInvestigacion
