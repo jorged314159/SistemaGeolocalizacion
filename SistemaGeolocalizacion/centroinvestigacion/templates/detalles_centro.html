@@ -45,11 +45,11 @@
             <tr>
                 <td>{{centros.nombre}}</td>
                 <td>
-                    {{centros.calle}}
-                    {{centros.colonia}}
-                    {{centros.numExterior}}
-                    {{centros.cp}}
-                    {{centros.estado}}
+                    {{centros.calle}},
+                    {{centros.colonia}},
+                    {{centros.numExterior}},
+                    {{centros.cp}},
+                    {{centros.estado}},
                     {{centros.municipio}}
                 </td>
                 <td>{{centros.latitud}}</td>
@@ -58,7 +58,7 @@
                 <td>{{centros.areaEnfoque}}</td>     
                 <td>{{centros.subAreaEnfoque}}</td>     
                 {% if centros.sitioWeb %}
-                    <td>{{centros.sitioWeb}}</td>
+                    <td><a href = "https://{{centros.sitioWeb}}" target = "_blank">{{centros.sitioWeb}}</a></td>
                 {% else %}
                     <td>No cuenta con sitio web</td>    
                 {% endif %}

@@ -19,8 +19,8 @@ class FormCentroInvestigacion(forms.ModelForm):
             'latitud': forms.TextInput(attrs={'class': 'form-control', 'readonly' : 'true'}),
             'longitud': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'true'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control'}),
-            'areaEnfoque': forms.Select(attrs={'class': 'form-control'}),
-            'subAreaEnfoque': forms.Select(attrs={'class': 'form-control'}),
+            'areaEnfoque': forms.Select(attrs={'class': 'form-select'}),
+            'subAreaEnfoque': forms.Select(attrs={'class': 'form-select'}),
             'sitioWeb': forms.TextInput(attrs={'class': 'form-control'}),
         }
         imagen = forms.ImageField(widget=forms.ImageField())

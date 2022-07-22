@@ -1,4 +1,4 @@
-define( [
+define([
 	"./core",
 	"./selector",
 	"./traversing",
