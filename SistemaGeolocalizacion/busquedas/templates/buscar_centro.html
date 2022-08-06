@@ -33,19 +33,26 @@
                     <div id="home" class="tab-pane fade in active">
                         <div class="well">
                             <nav class="navbar navbar-light bg-light">
-                                <form class="form-inline">
-                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                <form method="get">
+                                    <div id="custom-search-input">
+                                        <div class="input-group col-md-12">
+                                            <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value="{{ request.GET.buscar }}">
+                                            <span class="input-group list">
+                                                <i class="icon icon-search"></i>
+                                                <button type="submit" class="boton btn-success">Buscar</button>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </form>
                             </nav>
                             <p>
-                                <label>
-                                Filtros de búsqueda
-                                <select id=''>
-                                    <option value=''>Selecciona una opción</option>
-                                    <option value='nombre'>Nombre del Centro de Investigación</option>
-                                    <option value='enfoque'>Área de especialización</option>
-                                </select>
+                                <label>Filtros de búsqueda
+                                    <select id=''>
+                                        <option value=''>Selecciona una opción</option>
+                                        <option value='nombre'>Nombre del Centro de Investigación</option>
+                                        <option value='enfoque'>Área de especialización</option>
+                                        <option value='estado'>Estado</option>
+                                    </select>
                                 </label>
                             </p>
                 
@@ -57,10 +64,6 @@
                                 </div>
                             </div>
                             <br />
-                            <a class="btn btn-default" id='reset' href='#'>
-                                <i class="glyphicon glyphicon-repeat"></i>
-                                Borrar
-                            </a>
                         </div>
                     </div>
                 </div>
