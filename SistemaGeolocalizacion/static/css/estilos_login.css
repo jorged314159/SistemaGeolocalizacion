@@ -1156,7 +1156,8 @@ body {
   font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
   font-size: 13px;
   font-weight: 400;
-  line-height: 1.471; }
+  line-height: 1.471;
+}
 
 .main_container .top_nav {
   display: block;
@@ -3998,7 +3999,7 @@ ul.project_files li a i {
 /* *********  /ecommerce  **************************** */
 /** login **/
 .login {
-  background: #fce2e4; }
+  background: #fff; }
 
 .login .fa-paw {
   font-size: 26px; }
@@ -4088,7 +4089,7 @@ a.hiddenanchor {
   text-align: center;
   text-shadow: 0 1px 0 #fff;
   min-width: 280px; 
-  background-color: #fce2e4;
+  background-color: #fff;
 }
 
 .login_content a,
@@ -4103,7 +4104,6 @@ a.hiddenanchor {
   letter-spacing: -0.05em;
   line-height: 20px;
   margin: 10px 0 30px;
-  color: #781005;
 }
 
 .login_content h1:before, .login_content h1:after {

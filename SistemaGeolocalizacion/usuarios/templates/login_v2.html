@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+  
+        <div class="login_wrapper">
+          <div class="animate form login_form">
+            <section class="login_content">
+  
+              
+              {% if form.errors %}
+                <div class = "alert alert-warning">
+                    Datos de inicio de sesión incorrectos
+                </div>
+              {% endif %}
+              {% if messages %}
+                  {% for message in messages %}
+                    <div class="text-center alert alert-{{ message.tags }}">
+                      {{ message|safe }}
+                    </div>
+                  {% endfor %}
+              {% endif %}  
+            
+              <form method = "post">
+                {% csrf_token %}
+                <h1>Inicia Sesión</h1>
+                <div>
+                  <input type="text" class="form-control" placeholder="Nombre de Usuario" required = "" name="username">
+                </div>
+                <div>
+                  <input type="password" class="form-control" placeholder="Contraseña" required = "" name="password">
+                </div>
+                <div>
+                  <button type="submit" class="btn btn-default submit" href="{% url 'bienvenida' %}">Iniciar Sesión</button>
+                  {% comment %} <a class="reset_pass" href="#">¿Olvidaste tu contraseña?</a> {% endcomment %}
+                  <input type="hidden" name="next" value = "{{next}}">
+                </div>
+  
+                <div class="clearfix"></div>
+  
+                <div class="separator">
+                  <p class="change_link">¿Eres nuevo?
+                    <a href="{% url 'registrar' %}" class="to_register"> Registrarse </a>
+                  </p>
+  
+                  <div class="clearfix"></div>
+                  <br />
+  
+                </div>
+              </form>
+            </section>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
