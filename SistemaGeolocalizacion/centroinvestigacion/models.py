@@ -34,7 +34,6 @@ class CentroInvestigacion(models.Model):
     def __str__(self):
         return self.nombre
 
-
 class Enfoque(models.Model):
     area = models.ForeignKey("centroinvestigacion.Area", verbose_name="Area",
                                 on_delete=models.DO_NOTHING, null=False, blank=False)

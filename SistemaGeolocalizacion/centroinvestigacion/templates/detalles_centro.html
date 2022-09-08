@@ -27,13 +27,12 @@
         </div>
     </div>
     <div class = "table-responsive-sm">
+        <h6><b>Datos del Centro/Laboratorio:</b></h6>
         <table class = "table table-bordered">
         <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Dirección</th>
-                <th>Latitud</th>
-                <th>Longitud</th>
                 <th>Teléfono</th>
                 <th>Area de Investigación</th>
                 <th>Subarea</th>
@@ -52,8 +51,6 @@
                     {{centros.estado}},
                     {{centros.municipio}}
                 </td>
-                <td>{{centros.latitud}}</td>
-                <td>{{centros.longitud}}</td>
                 <td>{{centros.telefono}}</td>
                 <td>{{centros.areaEnfoque}}</td>     
                 <td>{{centros.subAreaEnfoque}}</td>     
@@ -74,8 +71,32 @@
                 </td>
             </tr>
         </tbody>
-    </table>
+        </table>
     </div>
+
+    <p></p>
+
+    <div class="table-responsive-sm">
+        <h6><b>Datos del Contaco(Responsable):</b></h6>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>{{centros.nombreEncargado}}</td>
+                    <td>{{centros.correoEncargado}}</td>
+                    <td>{{centros.telefonoEncargado}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     <div class = "col-md-12">
         <h2>Ubicación Geográfica</h2>
         <div id = "map"></div>    
