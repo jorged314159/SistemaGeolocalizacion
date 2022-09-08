@@ -25,7 +25,11 @@ class CentroInvestigacion(models.Model):
                                 on_delete=models.DO_NOTHING, null=False, blank=False)
     sitioWeb = models.CharField(max_length=100, unique=True, blank=True)
     imagen = models.ImageField(null = True, blank = True, upload_to = 'foto/')
-    
+    logotipo = models.ImageField(null = True, blank = True, upload_to = 'logos/')
+    nombreEncargado = models.CharField('Nombre',max_length=100, unique=True, blank=False)
+    correoEncargado = models.CharField('Correo',max_length=50, unique=True, blank=False)
+    telefonoEncargado = models.CharField('Teléfono',max_length=10, unique=True, blank=False)
+
 
     def __str__(self):
         return self.nombre
