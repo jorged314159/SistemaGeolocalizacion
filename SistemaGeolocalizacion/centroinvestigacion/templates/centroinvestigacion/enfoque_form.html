@@ -13,6 +13,13 @@
     </div>
     <div class="row">
         <div class="col-sm-10 col-lg-10">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class = "alert alert-danger" role = "alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+             {% endif %}
             <form action="" method="post">
                 {% csrf_token %}
                 <div class="well well-lg">

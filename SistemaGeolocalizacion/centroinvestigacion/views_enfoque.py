@@ -27,6 +27,16 @@ class NuevoEnfoqueView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     extra_context = {'accion': 'Nuevo'}
     success_message = "Se agregó el enfoque de manera exitosa"
 
+    def validaNombre(request):
+        if request.method == 'POST':
+
+            print("ayuda")
+            subArea = self.cleaned_data['subarea']
+            if CentroInvestigacion.objects.filter(subarea = subArea).exists():
+                print("algo igual")
+                messages.error(self.request, 'La sub area ya se encuentra registrada')
+                return redirect('enfoque_form')
+
 
 class EditarEnfoqueView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Enfoque

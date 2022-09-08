@@ -37,23 +37,7 @@ class FormCentroInvestigacion(forms.ModelForm):
             self.fields['imagen'].required = False
             self.fields['logotipo'].required = False
 
-        def clean_nombre_centro(self):
-            nombre = self.cleaned_data['nombre']
-            if CentroInvestigacion.object.filter(nombre = nombre).exists():
-                raise forms.ValidationError('El nombre del centro o laboratorio ya se encuentra registrado.')
-            return nombre
 
-        def clean_telefono_centro(self):
-            telefono = self.cleaned_data['telefono']
-            if CentroInvestigacion.object.filter(telefono = telefono).exists():
-                raise forms.ValidationError('El teléfono del centro o laboratorio ya se encuentra registrado.')
-            return telefono
-
-        def clean_nombreEncargado(self):
-            nombreEncargado = self.cleaned_data['nombreEncargado']
-            if CentroInvestigacion.object.filter(nombreEncargado = nombreEncargado).exists():
-                raise forms.ValidationError('El nombre del encargado ya se encuentra registrado.')
-            return nombreEncargado
 
 class FormEnfoque(forms.ModelForm):
 

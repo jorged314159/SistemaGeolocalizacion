@@ -32,6 +32,24 @@ class NuevoCentro(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         context["areaEnfoque"] = Area.objects.all()
         context["subAreaEnfoque"] = Enfoque.objects.all()
         return context
+
+    def clean_nombre_centro(self, form):
+        nombre = form.cleaned_data['nombre']
+        if CentroInvestigacion.objects.filter(nombre=nombre).exists():
+            messages.error(self.request, 'El nombre del centro o laboratorio ya se encuentra registrado.')
+        return nombre
+
+    def clean_telefono_centro(self, form):
+        telefono = form.cleaned_data['telefono']
+        if CentroInvestigacion.objects.filter(telefono=telefono).exists():
+            raise forms.ValidationError('El teléfono del centro o laboratorio ya se encuentra registrado.')
+        return telefono
+
+    def clean_nombreEncargado(self, form):
+        nombreEncargado = form.cleaned_data['nombreEncargado']
+        if CentroInvestigacion.objects.filter(nombreEncargado=nombreEncargado).exists():
+            raise forms.ValidationError('El nombre del encargado ya se encuentra registrado.')
+        return nombreEncargado
     
 
 
