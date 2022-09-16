@@ -1020,6 +1020,7 @@ pre code {
     max-width: 16.666667%;
   }
   .col-md-3 {
+    color : #781005;
     -ms-flex: 0 0 25%;
     flex: 0 0 25%;
     max-width: 25%;
@@ -10036,3 +10037,8 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+#bienvenido{
+  color : #000000;
+}
+

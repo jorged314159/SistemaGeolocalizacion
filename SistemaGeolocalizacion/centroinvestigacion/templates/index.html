@@ -20,7 +20,7 @@
     <!-- Font Awesome -->
     <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     <!-- Custom Theme Style -->
-    <link href="{% static 'build/css/custom.min.css' %}" rel="stylesheet">
+    <link href="{% static 'build/css/custom.css' %}" rel="stylesheet">
 
     {% block headers %}
     
@@ -28,12 +28,12 @@
 
   </head>
 
-  <body class="nav-md">
-    <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
+  <body class="nav-md" id="colorMenu">
+    <div class="container body" id="colorMenu">
+      <div class="main_container" id="colorMenu">
+        <div class="col-md-3 left_col" id="colorMenu">
+          <div class="left_col scroll-view" id="colorMenu">
+            <div class="navbar nav_title" id="colorMenu" style="border: 0;">
               <a href="{% url 'bienvenida' %}" class="site_title"><i class="fa fa-home"></i> <span>Inicio</span></a>
             </div>
 
@@ -56,16 +56,14 @@
               <div class="menu_section">
                 <h3>Altas</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-edit"></i> Centro de Investigación <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Laboratorio/Centro <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{% url 'centros_lista'%}">Lista</a></li>
-                      <li><a href="{% url 'nuevo_centro' %}">Nuevo</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Enfoque <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{% url 'enfoques_lista' %}">Lista</a></li>
-                      <li><a href="{% url 'nuevo_enfoque' %}">Nuevo</a></li>
                     </ul>
                   </li>           
                 </ul>
@@ -105,16 +103,14 @@
           {% endblock contenido %}
         </div>
         <!-- /page content -->
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            {% comment %} Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a> {% endcomment %}
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+
       </div>
     </div>
+    <!-- footer content -->
+    <footer class="v-footer v-sheet v-sheet--tile theme--light v-footer--fixed">
+        Desarrollado por: <img src="{% static 'build/images/Logos Labsol 2022_Mesa de trabajo 1.png' %}" width="120" class="img-responsive">
+    </footer>
+    <!-- /footer content -->
 
     <!-- jQuery -->
     <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
@@ -132,4 +128,5 @@
     {% endblock scripts %}
 	
   </body>
+
 </html>

@@ -1,11 +1,19 @@
 {% extends 'index.html' %}
-
+{% load static %}
 {% block titulo %}
     Inicio
 {% endblock titulo %}
 
 {% block contenido %}
     <div class="row">
-        <h1>BIENVENIDO AL SISTEMA</h1>
+        <h2>SISTEMA DE CAPACIDADES CIENTÍFICAS Y TRECNOLÓGICAS DEL ESTADO DE ZACATECAS</h2>
+    </div>
+    <div class="row">
+        <div class="col">
+            <img src="{% static 'build/images/Logos Labsol 2022_Mesa de trabajo 1.png' %}" width="400" class="img-responsive">
+        </div>
+        <div class="col">
+            <img src="{% static 'build/images/logo-cozcyt.png' %}" width="345" class="img-responsive">
+        </div>
     </div>
 {% endblock contenido %}

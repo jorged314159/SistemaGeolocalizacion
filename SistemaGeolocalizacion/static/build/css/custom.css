@@ -802,7 +802,7 @@
   content: "\e260"; }
 
 .left_col {
-  background: #2A3F54; }
+  background: #781005; }
 
 .container {
   width: 100%;
@@ -1250,7 +1250,8 @@ table.no-margin .progress {
 .grid_slider .col-md-6 {
   padding: 0 40px; }
 
-h1, .h1, h2, .h2, h3, .h3 {
+h1, .h1, h2, .h2, h3, .h3 , h4, .h4, h5, .h5, h6, .h6{
+  color: #000000;
   margin-top: 10px;
   margin-bottom: 10px; }
 
@@ -4973,3 +4974,12 @@ ul.notifications {
 
 .calendar-exibit .calendar-table {
   padding: 0 0 4px 0; }
+
+
+#colorMenu{
+  background: #781005;
+}
+
+#colorFondoForm{
+  background: #fce2e4;
+}

@@ -5,7 +5,15 @@
 {% endblock titulo %}
 
 {% block contenido %}
-    <h1>Enfoques de los Centros de Investigación del Estado de Zacatecas</h1>
+    <div class="row">
+        <div class="col">
+            <h2>Enfoques de los Centros de Investigación del Estado de Zacatecas</h2>
+        </div>
+        <div class="col">
+            <a class = "btn btn-success btn-sm" href="{% url 'nuevo_enfoque' %}">Nuevo</a>
+        </div>
+    </div>
+
     {% if messages %}
         {% for message in messages %}
             {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
