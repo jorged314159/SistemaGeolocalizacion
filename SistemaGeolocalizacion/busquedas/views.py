@@ -3,17 +3,9 @@ from centroinvestigacion.models import CentroInvestigacion, Enfoque
 from django.db.models import Q
 
 # Create your views here.
-def buscar_nombre(request):
-    queryset = request.GET.get("buscar")
-    # print(queryset)
-    centros = CentroInvestigacion.objects.filter(nombre = queryset)
-    # print('El centro es: ' + centros.nombre)
-    if queryset:
-        centros = CentroInvestigacion.objects.filter(
-            Q(nombre__icontains = queryset)
-        ).distinct()
-    
-    return render(request, "buscar_centro.html", {'centros':centros})
+def obtener_centros(request):
+   centros = CentroInvestigacion.objects.all()
+   return render(request, "buscar_centro.html", {"centros": centros})
 
 
 
