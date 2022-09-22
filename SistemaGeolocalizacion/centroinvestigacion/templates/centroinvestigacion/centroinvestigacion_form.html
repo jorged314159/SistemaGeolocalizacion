@@ -34,61 +34,60 @@
             {% endif %}
             <form action="" method="post" enctype = "multipart/form-data" class = "">
                 {% csrf_token %}
-                <div class = "well well-lg" id="colorFondoForm">
+                <div class = "well well-lg">
                     <h6><b>Datos del Centro:</b></h6>
                     <div class = "row">
-                        <div class = "col">{{form.nombre.label}}: {{form.nombre}}</div>
-                        <div class = "col">{{form.telefono.label}}: {{form.telefono}}</div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.nombre.label}}: {{form.nombre}}</p></div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.telefono.label}}: {{form.telefono}}</p></div>
                     </div>
-                    <p></p>
                     <div class = "row">
-                        <div class = "col">{{form.areaEnfoque.label}}:
+                        <div class = "col"><p id="colorLetrasForm">{{form.areaEnfoque.label}}:
                             <select name="areaEnfoque" id="id_areaEnfoque" class = "form-control">
                                 <option value = "0">-Selecciona una Opción-</option>
                                 {% for area in areaEnfoque %}
                                     <option value="{{area.id}}">{{area.nombre}}</option>
                                 {% endfor %}
-                            </select>
+                            </select></p>
                         </div>
-                        <div class = "col">{{form.subAreaEnfoque.label}}:
+                        <div class = "col"><p id="colorLetrasForm">{{form.subAreaEnfoque.label}}:
                             <select name="subAreaEnfoque" id="id_subAreaEnfoque" class = "form-control">
                                 <option value = "0">-Selecciona una Opción-</option>
                                 {% for subarea in subAreaEnfoque %}
                                     <option value="{{subarea.id}}" data-chained = "{{subarea.area.id}}">{{subarea.subarea}}</option>
                                 {% endfor %}
-                            </select>
+                            </select></p>
                         </div>
                     </div>
                     <p></p>
                     <div class = "row">
-                        <div class = "col">{{form.sitioWeb.label}}: {{form.sitioWeb}}</div>
-                        <div class="col">{{form.imagen.label}}: {{form.imagen}}</div>
-                        <div class = "col">{{form.logotipo.label}}: {{form.logotipo}}</div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.sitioWeb.label}}: {{form.sitioWeb}}</p></div>
+                        <div class="col"><p id="colorLetrasForm">{{form.imagen.label}}: {{form.imagen}}</p></div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.logotipo.label}}: {{form.logotipo}}</p></div>
                     </div>
                     <p></p>
 
                     <h6><b>Datos del Contacto(Responsable):</b></h6>
                     <div class = "row">
-                        <div class = "col">{{form.nombreEncargado.label}}: {{form.nombreEncargado}}</div>
-                        <div class = "col">{{form.correoEncargado.label}}: {{form.correoEncargado}}</div>
-                        <div class = "col">{{form.telefonoEncargado.label}}: {{form.telefonoEncargado}}</div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.nombreEncargado.label}}: {{form.nombreEncargado}}</p></div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.correoEncargado.label}}: {{form.correoEncargado}}</p></div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.telefonoEncargado.label}}: {{form.telefonoEncargado}}</p></div>
                     </div>
                     <p></p>
 
                     <h6><b>Domicilio:</b></h6>
                     <div class = "row">
-                        <div class = "col">{{form.calle.label}}: {{form.calle}}</div>
-                        <div class = "col">{{form.numExterior.label}}: {{form.numExterior}}</div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.calle.label}}: {{form.calle}}</p></div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.numExterior.label}}: {{form.numExterior}}</p></div>
                     </div>
                     <p></p>
                     <div class = "row">
-                        <div class = "col">{{form.colonia.label}}: {{form.colonia}}</div>
-                        <div class = "col">{{form.cp.label}}: {{form.cp}}</div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.colonia.label}}: {{form.colonia}}</p></div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.cp.label}}: {{form.cp}}</p></div>
                     </div>
                     <p></p>
                     <div class = "row">
-                        <div class = "col">{{form.estado.label}}: {{form.estado}}</div>
-                        <div class = "col">{{form.municipio.label}}: {{form.municipio}}</div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.estado.label}}: {{form.estado}}</p></div>
+                        <div class = "col"><p id="colorLetrasForm">{{form.municipio.label}}: {{form.municipio}}</p></div>
                     </div>
 
                 </div>
