@@ -3999,7 +3999,7 @@ ul.project_files li a i {
 /* *********  /ecommerce  **************************** */
 /** login **/
 .login {
-  background: #fce2e4; }
+  background: #FFFFFF; }
 
 .login .fa-paw {
   font-size: 26px; }
@@ -4089,7 +4089,7 @@ a.hiddenanchor {
   text-align: center;
   text-shadow: 0 1px 0 #fff;
   min-width: 280px; 
-  background-color: #fce2e4;
+  background-color: #FFFFFF;
 }
 
 .login_content a,
@@ -4104,7 +4104,7 @@ a.hiddenanchor {
   letter-spacing: -0.05em;
   line-height: 20px;
   margin: 10px 0 30px;
-  color: #781005;
+  color: #000000;
 }
 
 .login_content h1:before, .login_content h1:after {
@@ -4978,10 +4978,6 @@ ul.notifications {
 
 #colorMenu{
   background: #781005;
-}
-
-#colorFondoForm{
-  background: #fce2e4;
 }
 
 #colorLetrasForm{

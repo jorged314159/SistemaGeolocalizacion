@@ -14,7 +14,7 @@
     <title>Login</title>
 
     <!-- Bootstrap -->
-    <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.css' %}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
     <!-- NProgress -->
@@ -23,8 +23,8 @@
     <link href="{% static 'vendors/animate.css/animate.min.css' %}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    {% comment %} <link href="{% static 'build/css/custom.css' %}" rel="stylesheet"> {% endcomment %}
-    <link href = "{% static 'css/estilos_login.css' %}" rel = "stylesheet">
+    <link href="{% static 'build/css/custom.css' %}" rel="stylesheet">
+
   </head>
 
   <body class="login">
@@ -34,9 +34,12 @@
 
       <div class="login_wrapper">
         <div class="animate form login_form">
+          <div>
+            <img src="{% static 'build/images/logo-cozcyt.png' %}" class="ImgPrin">
+          </div>
           <section class="login_content">
 
-            
+
             {% if form.errors %}
               <div class = "alert alert-warning">
                   Datos de inicio de sesión incorrectos
@@ -48,8 +51,8 @@
                     {{ message|safe }}
                   </div>
                 {% endfor %}
-            {% endif %}  
-          
+            {% endif %}
+
             <form method = "post">
               {% csrf_token %}
               <h1>Inicia Sesión</h1>
