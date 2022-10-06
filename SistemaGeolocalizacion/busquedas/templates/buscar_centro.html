@@ -20,85 +20,108 @@ Búsqueda de Centros de Investigación
 {% endblock headers %}
 
 {% block contenido %}
-<div class = "container-fluid">
-    <h1>Mapa de los Centros de Investigación en el Estado de Zacatecas</h1>
-    <div>
-        <div class="col-sm-6 col-lg-5">
-            <h4>Buscamos resolver problemas de gente zacatecana con investigadores e instituciones zacatecanas.</h4>
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Búsquedas</a></li>
-                <li><a data-toggle="tab" href="#menu1">Rutas de Navegación</a></li>
-            </ul>
-            <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
-                    <div class="well">
-                        <nav class="navbar navbar-light bg-light">
-                            <form method="get">
-                                <div id="custom-search-input">
-                                    <div class="input-group col-md-12">
-                                        <input type="text" class="form-control" placeholder="Buscar..." name="buscar" value="{{ request.GET.buscar }}">
-                                        <span class="input-group list">
+
+<div class="container-fluid">
+    <h1 class="text-center">Mapa de los Centros de Investigación en el Estado de Zacatecas</h1>
+    <h4 class="text-center">Buscamos resolver problemas de gente zacatecana con investigadores e instituciones zacatecanas.</h4>
+    <nav class="navbar navbar-light bg-light">
+        <form method="get">
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input type="text" class="form-control" placeholder="Buscar..." name="buscar"
+                           value="{{ request.GET.buscar }}">
+                    <span class="input-group list">
                                                 <i class="icon icon-search"></i>
                                                 <button type="submit" class="boton btn-success">Buscar</button>
                                             </span>
-                                    </div>
-                                </div>
-                            </form>
-                        </nav>
-                        <p>
-                            <label>Filtros de búsqueda
-                                <select id=''>
-                                    <option value=''>Selecciona una opción</option>
-                                    <option value='nombre'>Nombre del Centro de Investigación</option>
-                                    <option value='enfoque'>Área de especialización</option>
-                                    <option value='estado'>Estado</option>
-                                </select>
-                            </label>
-                        </p>
-                        <br />
-                        <h4>Datos del Centro de Investigacion</h4>
-                        <div class="row">
-                            <div class="form-group shadow-textarea">
-                                <table class = "table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Dirección</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for centro in centros %}
-                                    <tr>
-                                        <td>{{ centro.nombre }}</td>
-                                        <td>
-                                            {{ centro.calle }} #{{ centro.numExterior }},
-                                            {{ centro.colonia }},
-                                            {{ centro.cp }},
-                                            {{ centro.municipio }},
-                                            {{ centro.estado }}.
-                                        </td>
-                                    </tr>
-                                    {% empty %}
-                                    <tr>
-                                        <td colspan="2">
-                                            <p>No existen datos</p>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <br />
-                    </div>
                 </div>
             </div>
+        </form>
+    </nav>
+    <p>
+        <label>Filtros de búsqueda
+            <select id=''>
+                <option value=''>Selecciona una opción</option>
+                <option value='nombre'>Nombre del Centro de Investigación</option>
+                <option value='enfoque'>Área de especialización</option>
+                <option value='estado'>Estado</option>
+            </select>
+        </label>
+    </p>
+
+    <div class="row">
+        <div id = "map"></div>
+    </div>
+
+    <h4 class="text-center">Datos del Centro de Investigacion</h4>
+
+    <div class="row text-center">
+        <div class="col-4 box1 pt-4">
+            <a href="tel:+123456789"><i class="fas fa-phone fa-3x"></i>
+                <h3 class="d-none d-lg-block d-xl-block">Teléfono</h3>
+                <p class="d-none d-lg-block d-xl-block">
+                    {% for centro in centros %}
+                    <tr>
+                        <td>{{ centro.telefono }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2">
+                        <p>No existen datos</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </p>
+            </a>
         </div>
-        <div class = "col-lg-8 col-lg-5">
-            <div id = "map"></div>
+        <div class="col-4 box2 pt-4">
+            <a href=""><i class="fas fa-home fa-3x"></i>
+                <h3 class="d-none d-lg-block d-xl-block">Dirección</h3>
+                <p class="d-none d-lg-block d-xl-block">
+                    {% for centro in centros %}
+                    <tr>
+                        <td>{{ centro.nombre }}</td>
+                        <td>
+                            {{ centro.calle }} #{{ centro.numExterior }},
+                            {{ centro.colonia }},
+                            {{ centro.cp }},
+                            {{ centro.municipio }},
+                            {{ centro.estado }}.
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2">
+                        <p>No existen datos</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </p>
+            </a>
+        </div>
+        <div class="col-4 box3 pt-4">
+            <a href="mailto:test@test.com"><i class="fas fa-envelope fa-3x"></i>
+                <h3 class="d-none d-lg-block d-xl-block">Datos del Responsable</h3>
+                <p class="d-none d-lg-block d-xl-block">
+                    {% for centro in centros %}
+                    <tr>
+                        <td>{{ centro.nombreEncargado }}</td>
+                        <td>{{ centro.telefonoEncargado }}</td>
+                        <td>{{ centro.correoEncargado }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="2">
+                        <p>No existen datos</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </p>
+            </a>
         </div>
     </div>
 </div>
+
 {% endblock contenido %}
 
 {% block scripts %}
@@ -120,7 +143,6 @@ Búsqueda de Centros de Investigación
             map,
             position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
     });
-        marker.setAnimation(google.maps.Animation.BOUNCE);
         {% endfor %}
 
 
