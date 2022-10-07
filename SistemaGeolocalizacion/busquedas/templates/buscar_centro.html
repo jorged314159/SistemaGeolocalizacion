@@ -31,9 +31,9 @@ Búsqueda de Centros de Investigación
                     <input type="text" class="form-control" placeholder="Buscar..." name="buscar"
                            value="{{ request.GET.buscar }}">
                     <span class="input-group list">
-                        <i class="icon icon-search"></i>
-                        <button type="submit" class="boton btn-success">Buscar</button>
-                    </span>
+                                                <i class="icon icon-search"></i>
+                                                <button type="submit" class="boton btn-success">Buscar</button>
+                                            </span>
                 </div>
             </div>
         </form>
@@ -80,15 +80,13 @@ Búsqueda de Centros de Investigación
                 <p class="d-none d-lg-block d-xl-block">
                     {% for centro in centros %}
                     <tr>
+                        <td>{{ centro.nombre }}</td>
                         <td>
-                            <a onclick="return crearRuta();"
-                            href="https://www.google.cl/maps/preview" target="_blank" id="direccion">
-                                {{ centro.calle }} #{{ centro.numExterior }},
-                                {{ centro.colonia }},
-                                {{ centro.cp }},
-                                {{ centro.municipio }},
-                                {{ centro.estado }}.
-                            </a>
+                            {{ centro.calle }} #{{ centro.numExterior }},
+                            {{ centro.colonia }},
+                            {{ centro.cp }},
+                            {{ centro.municipio }},
+                            {{ centro.estado }}.
                         </td>
                     </tr>
                     {% empty %}
@@ -141,26 +139,13 @@ Búsqueda de Centros de Investigación
         });
 
         {% for centro in centros %}
-            marker = new google.maps.Marker({
-                map,
-                position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
-            });
-
-            google.maps.event.addListener(marker, 'click', (function(marker){
-                return function() {
-                    infoWindow.setContent("{{centro.nombre}}");
-                    infoWindow.open(map, marker);
-                }
-            })(marker));
+        marker = new google.maps.Marker({
+            map,
+            position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
+    });
         {% endfor %}
 
-        function mostrarLugar(){
-          let item = document.getElementById('direccion')
-          if(item){
-            window.open('https://google.cl/maps/place/'+item.value, '_blank');
-          }
-          return false; //No ejecutar el evento.
-        }
+
     }
     window.initMap = initMap;
 
