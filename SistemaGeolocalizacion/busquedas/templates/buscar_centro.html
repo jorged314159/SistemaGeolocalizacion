@@ -57,12 +57,12 @@ Búsqueda de Centros de Investigación
 
     <div class="row text-center">
         <div class="col-4 box1 pt-4">
-            <a href="tel:+123456789"><i class="fas fa-phone fa-3x"></i>
+                <i class="fas fa-phone fa-3x"></i>
                 <h3 class="d-none d-lg-block d-xl-block">Teléfono</h3>
                 <p class="d-none d-lg-block d-xl-block">
                     {% for centro in centros %}
                     <tr>
-                        <td>{{ centro.telefono }}</td>
+                        <td><b>{{ centro.telefono }}</b></td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -74,20 +74,16 @@ Búsqueda de Centros de Investigación
                 </p>
             </a>
         </div>
-        <div class="col-4 box2 pt-4">
-            <a href=""><i class="fas fa-home fa-3x"></i>
+        <div class="col-4 box2 pt-4" >
+                <i class="fas fa-home fa-3x"></i>
                 <h3 class="d-none d-lg-block d-xl-block">Dirección</h3>
                 <p class="d-none d-lg-block d-xl-block">
                     {% for centro in centros %}
                     <tr>
-                        <td>
+                        <td >
                             <a onclick="return crearRuta();"
-                            href="https://www.google.cl/maps/preview" target="_blank" id="direccion">
-                                {{ centro.calle }} #{{ centro.numExterior }},
-                                {{ centro.colonia }},
-                                {{ centro.cp }},
-                                {{ centro.municipio }},
-                                {{ centro.estado }}.
+                                type="button" class="btn btn-link fas fa-car"
+                                href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">{{ centro.latitud }}, {{ centro.longitud }}
                             </a>
                         </td>
                     </tr>
@@ -102,14 +98,14 @@ Búsqueda de Centros de Investigación
             </a>
         </div>
         <div class="col-4 box3 pt-4">
-            <a href="mailto:test@test.com"><i class="fas fa-envelope fa-3x"></i>
+                <i class="fas fa-envelope fa-3x"></i>
                 <h3 class="d-none d-lg-block d-xl-block">Datos</h3>
                 <p class="d-none d-lg-block d-xl-block">
                     {% for centro in centros %}
                     <tr>
-                        <td>{{ centro.nombreEncargado }}</td>
-                        <td>{{ centro.telefonoEncargado }}</td>
-                        <td>{{ centro.correoEncargado }}</td>
+                        <td><b>{{ centro.nombreEncargado }}</b></td>
+                        <td><b>{{ centro.telefonoEncargado }}</b></td>
+                        <td><b>{{ centro.correoEncargado }}</b></td>
                     </tr>
                     {% empty %}
                     <tr>
@@ -149,20 +145,23 @@ Búsqueda de Centros de Investigación
 
             google.maps.event.addListener(marker, 'click', (function(marker){
                 return function() {
-                    infoWindow.setContent("{{centro.nombre}}");
+                    infoWindow.setContent("{{centro.nombre}}, {{centro.latitud}}, {{centro.longitud}}");
                     infoWindow.open(map, marker);
                 }
-            })(marker));
-        {% endfor %}
+            })(marker))
 
-        function mostrarLugar(){
-          let item = document.getElementById('direccion')
-          if(item){
-            window.open('https://google.cl/maps/place/'+item.value, '_blank');
-          }
-          return false; //No ejecutar el evento.
-        }
+        {% endfor %}
     }
+
+    function crearRuta() {
+        var item = document.getElementById('direccion').textContent;
+        alert(item);
+        if (item) {
+            window.open('https://google.com.mx/maps/place/' + item, '_blank');
+        }
+        return false;
+    }
+
     window.initMap = initMap;
 
 </script>
