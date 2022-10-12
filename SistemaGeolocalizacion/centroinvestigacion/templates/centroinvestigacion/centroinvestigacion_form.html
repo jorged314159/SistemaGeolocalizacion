@@ -93,11 +93,16 @@
                 </div>
 
                 <div class = "well">
-                    <h6><b>Geolocalización:</b></h6>
+                    <div class="row">
+                        <div class="col">
+                            <h6><b>Geolocalización: Para una mejor presición, arrastrar el marcador a la posicion exacta</b></h6>
+                        </div>
                         <div class = "row">
                             <div class = "col" hidden>{{form.latitud.label}}: {{form.latitud}}</div>
                             <div class = "col" hidden>{{form.longitud.label}}: {{form.longitud}}</div>
+                            <input class="btn btn-success" type="button" value="Agregar Marcador" onclick="return direccion();">
                         </div>
+                    </div>
                         <p></p>
                     <div id = "map"></div>
                 </div>
@@ -127,15 +132,17 @@
 <script>
 
     {% if accion == 'Editar' %}
-        let marker;
+        var marker;
+        var geocoder;
+        var map;
 
         latitudE = $('#id_latitud').val()
         longitudE = $('#id_longitud').val()
 
         function initMap() {
 
-
-            const map = new google.maps.Map(document.getElementById("map"), {
+            geocoder = new google.maps.Geocoder();
+            map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: parseFloat(latitudE), lng: parseFloat(longitudE) },
             zoom: 16,
             });
@@ -149,13 +156,40 @@
             });
             marker.addListener("dragend", toggleBounce);
         }
-    {% else %}
-        let marker;
+        function direccion() {
+            var calle = document.getElementById('id_calle').value;
+            var numero = document.getElementById('id_numExterior').value;
+            var colonia = document.getElementById('id_colonia').value;
+            var cp = document.getElementById('id_cp').value;
+            var estado = document.getElementById('id_estado').value;
+            var municipio = document.getElementById('id_municipio').value;
 
+            var direccion = calle + ' ' + numero + ', ' + colonia + ', ' + cp + ', ' + estado + ', ' + municipio;
+            geocoder.geocode( { 'address': direccion}, function(results, status) {
+                if(status == 'OK'){
+                    map.setCenter(results[0].geometry.location);
+                    marker.setPosition(results[0].geometry.location);
+                    // marker = new google.maps.Marker({
+                    //     map: map,
+                    //     position: results[0].geometry.location,
+                    //     draggable: true,
+                    // });
+                } else {
+                    alert('No se pudo agregar el marcador correctamente por la siguiente razon: No se agregó una dirección');
+                }
+            });
+            marker.addListener("dragend", toggleBounce);
+
+        }
+    {% else %}
+        var geocoder;
+        var map;
+        var marker;
         function initMap() {
-            const map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 22.766050981989335, lng: -102.5697492675781 },
-            zoom: 11,
+            geocoder = new google.maps.Geocoder();
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 22.766050981989335, lng: -102.5697492675781 },
+                zoom: 11,
             });
         
 
@@ -165,8 +199,34 @@
                 animation: google.maps.Animation.DROP,
                 position: { lat: 22.766050981989335, lng: -102.5697492675781 },
             });
-            marker.addListener("dragend", toggleBounce);
         }
+
+        function direccion() {
+            var calle = document.getElementById('id_calle').value;
+            var numero = document.getElementById('id_numExterior').value;
+            var colonia = document.getElementById('id_colonia').value;
+            var cp = document.getElementById('id_cp').value;
+            var estado = document.getElementById('id_estado').value;
+            var municipio = document.getElementById('id_municipio').value;
+
+            var direccion = calle + ' ' + numero + ', ' + colonia + ', ' + cp + ', ' + estado + ', ' + municipio;
+            geocoder.geocode( { 'address': direccion}, function(results, status) {
+                if(status == 'OK'){
+                    map.setCenter(results[0].geometry.location);
+                    marker.setPosition(results[0].geometry.location);
+                    // marker = new google.maps.Marker({
+                    //     map: map,
+                    //     position: results[0].geometry.location,
+                    //     draggable: true,
+                    // });
+                } else {
+                    alert('No se pudo agregar el marcador correctamente por la siguiente razon: No se agregó una dirección');
+                }
+            });
+            marker.addListener("dragend", toggleBounce);
+
+        }
+
     {% endif %}
 
     function toggleBounce() {
