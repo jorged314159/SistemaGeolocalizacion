@@ -41,3 +41,11 @@ a:link{text-decoration:none;}
 .box1{background: #781005}
 .box2{background: #fce2e4}
 .box3{background: #781005}
+
+.contenedor-imagenes {
+  display: flex;
+}
+
+.contenedor-imagenes img:first-child {
+  margin-right: 10px;
+}

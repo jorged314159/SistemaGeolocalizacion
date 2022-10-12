@@ -23,19 +23,16 @@
     <link href="{% static 'vendors/animate.css/animate.min.css' %}" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="{% static 'build/css/custom.min.css' %}" rel="stylesheet">
+    <link href="{% static 'build/css/custom.css' %}" rel="stylesheet">
   </head>
   <body class="login">
-    <div>
-      
-      <a class="hiddenanchor" id="signup"></a>
-      <!-- <a class="hiddenanchor" id="signin"></a> -->
-
+    <div class="card-body">
       <div class="login_wrapper">
-
         <div class="animate form login_form">
-
           <section class="login_content">
+            <div class="contenedor-imagenes">
+              <img src="{% static 'build/images/logo-cozcyt.png' %}">
+            </div>
             {% if form.errors %}
               <div class = "alert alert-warning">
                   {{form.errors}}
@@ -66,18 +63,10 @@
                 <p class="change_link">¿Ya tienes cuenta?
                   <a href="{% url 'login' %}" class="to_register"> Inicia Sesión </a>
                 </p>
-      
-                <div class="clearfix"></div>
                 <br />
-      
-                <div>
-                  <!-- <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                  <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p> -->
-                </div>
               </div>
             </form>
-          </section>  
-
+          </section>
       </div>
     </div>
   </body>
