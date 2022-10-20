@@ -10,15 +10,16 @@ def obtener_centros(request):
 
 
 '''
-def buscar_municipio(request):
+def buscar_municipio(request, centros):
     queryset = request.GET.get("buscar")
-    centros = CentroInvestigacion.objects.filter()
     if queryset:
-        centros = CentroInvestigacion.objects.filter(
-            Q(municipio__icontains=queryset)
-        ).distinct()
+        for queryset in centros:
+            centros = CentroInvestigacion.objects.filter(
+                Q(municipio__icontains=queryset)
+            ).distinct()
 
     return render(request, "buscar_centro.html", {'centros': centros})
+
 
 def buscar_enfoque_desc(request):
     queryset = request.GET.get("buscar")

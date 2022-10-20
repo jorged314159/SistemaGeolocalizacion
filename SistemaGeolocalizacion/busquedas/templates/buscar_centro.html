@@ -44,7 +44,7 @@ Búsqueda de Centros de Investigación
                 <option value=''>Selecciona una opción</option>
                 <option value='nombre'>Nombre del Centro de Investigación</option>
                 <option value='enfoque'>Área de especialización</option>
-                <option value='estado'>Estado</option>
+                <option value='municipio'>Municipio</option>
             </select>
         </label>
     </p>
@@ -83,7 +83,7 @@ Búsqueda de Centros de Investigación
                         <td >
                             <a onclick="return crearRuta();"
                                 type="button" class="btn btn-link fas fa-car"
-                                href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">{{ centro.calle }} #{{ centro.numExterior }}, {{ centro.colonia }}, {{ centro.cp }}, {{ centro.municipio }}, {{ centro.estado }}
+                                href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">{{ centro.calle }} {{ centro.numExterior }}, {{ centro.colonia }}, {{ centro.cp }}, {{ centro.municipio }}, {{ centro.estado }}
                             </a>
                         </td>
                     </tr>
@@ -130,6 +130,8 @@ Búsqueda de Centros de Investigación
 <script>
 
     let marker;
+    let mun;
+    let municipio;
     function initMap() {
         var infoWindow = new google.maps.InfoWindow();
         const map = new google.maps.Map(document.getElementById("map"), {
@@ -137,19 +139,26 @@ Búsqueda de Centros de Investigación
             zoom: 10,
         });
 
+        mun = document.getElementById('barra_busqueda').value;
+
         {% for centro in centros %}
-            marker = new google.maps.Marker({
-                map,
-                position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
-            });
 
-            google.maps.event.addListener(marker, 'click', (function(marker){
-                return function() {
-                    infoWindow.setContent("{{centro.nombre}}, {{centro.latitud}}, {{centro.longitud}}");
-                    infoWindow.open(map, marker);
-                }
-            })(marker))
+            mun = mun.toString();
 
+            if ('{{centro.municipio}}' == mun){
+                marker = new google.maps.Marker({
+                    map,
+                    position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
+                });
+
+                google.maps.event.addListener(marker, 'click', (function(marker){
+                    return function() {
+                        infoWindow.setContent("{{centro.nombre}}, {{centro.latitud}}, {{centro.longitud}}");
+                        infoWindow.open(map, marker);
+                        //Añadir que al darle click muestre los datos del centro en la parte de abajo
+                    }
+                })(marker))
+            }
         {% endfor %}
     }
 
