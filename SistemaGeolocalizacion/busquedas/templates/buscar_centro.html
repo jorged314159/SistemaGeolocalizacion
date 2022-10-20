@@ -29,7 +29,7 @@ Búsqueda de Centros de Investigación
             <div id="custom-search-input">
                 <div class="input-group col-md-12">
                     <input type="text" class="form-control" placeholder="Buscar..." name="buscar"
-                           value="{{ request.GET.buscar }}">
+                           value="{{ request.GET.buscar }}" id="barra_busqueda">
                     <span class="input-group list">
                         <i class="icon icon-search"></i>
                         <button type="submit" class="boton btn-success">Buscar</button>
@@ -131,8 +131,8 @@ Búsqueda de Centros de Investigación
 
     let marker;
     let mun;
-    let municipio;
     function initMap() {
+
         var infoWindow = new google.maps.InfoWindow();
         const map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 22.766050981989335, lng: -102.5697492675781 },
@@ -144,6 +144,21 @@ Búsqueda de Centros de Investigación
         {% for centro in centros %}
 
             mun = mun.toString();
+            const datos =
+            '<div id="content">' +
+                '<div id="bodyContent">' +
+                    '<h5>{{centro.nombre}}</h5>' +
+                    '<p><b>Contacto</b></p>' +
+                    '<p>{{centro.telefono}}</p>' +
+                    '<p><b>Datos Responsable</b></p>' +
+                    '<p>{{centro.nombreEncargado}}, {{centro.telefonoEncargado}}, {{centro.correoEncargado}}</p>' +
+                    '<a onClick="return crearRuta();" ' +
+                    'type="button" className="btn btn-link fas fa-car"' +
+                    'href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">' +
+                    '{{centro.calle}} {{centro.numExterior}}, {{centro.colonia}}, {{centro.cp}}, {{centro.municipio}}, {{centro.estado}}' +
+                    "</a>" +
+                "</div>" +
+            "<div>";
 
             if ('{{centro.municipio}}' == mun){
                 marker = new google.maps.Marker({
@@ -153,7 +168,7 @@ Búsqueda de Centros de Investigación
 
                 google.maps.event.addListener(marker, 'click', (function(marker){
                     return function() {
-                        infoWindow.setContent("{{centro.nombre}}, {{centro.latitud}}, {{centro.longitud}}");
+                        infoWindow.setContent(datos);
                         infoWindow.open(map, marker);
                         //Añadir que al darle click muestre los datos del centro en la parte de abajo
                     }
