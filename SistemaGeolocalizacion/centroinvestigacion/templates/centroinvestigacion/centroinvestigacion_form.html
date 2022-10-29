@@ -168,6 +168,7 @@
             geocoder.geocode( { 'address': direccion}, function(results, status) {
                 if(status == 'OK'){
                     map.setCenter(results[0].geometry.location);
+                    map.setZoom(18);
                     marker.setPosition(results[0].geometry.location);
                     // marker = new google.maps.Marker({
                     //     map: map,

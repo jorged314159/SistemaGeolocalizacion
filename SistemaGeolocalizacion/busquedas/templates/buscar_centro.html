@@ -5,18 +5,6 @@ Búsqueda de Centros de Investigación
 {% endblock titulo %}
 
 {% block headers %}
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style>
-    #map{
-        height: 546px;
-    }
-
-    html,
-    body {
-        height: 100%;
-    }
-</style>
-
 {% endblock headers %}
 
 {% block contenido %}
@@ -28,7 +16,7 @@ Búsqueda de Centros de Investigación
         <form method="get">
             <div id="custom-search-input">
                 <div class="input-group col-md-12">
-                    <input type="text" class="form-control" placeholder="Buscar..." name="buscar"
+                    <input type="text" class="form-control" placeholder="Nombre del centro o tema de interés..." name="buscar"
                            value="{{ request.GET.buscar }}" id="barra_busqueda">
                     <span class="input-group list">
                         <i class="icon icon-search"></i>
@@ -40,11 +28,70 @@ Búsqueda de Centros de Investigación
     </nav>
     <p>
         <label>Filtros de búsqueda
-            <select id=''>
+            <select id='filtro' class="form-control">
                 <option value=''>Selecciona una opción</option>
-                <option value='nombre'>Nombre del Centro de Investigación</option>
-                <option value='enfoque'>Área de especialización</option>
                 <option value='municipio'>Municipio</option>
+            </select>
+            <select class = "form-control">
+                <option value = "0">-Selecciona una Opción-</option>
+                <option value = "1">Apozol</option>
+                <option value = "2">Apulco</option>
+                <option value = "3">Atolinga</option>
+                <option value = "4">Benito Juárez</option>
+                <option value = "5">Calera</option>
+                <option value = "6">Cañitas de Felipe Pescador</option>
+                <option value = "7">Concepción del Oro</option>
+                <option value = "8">Cuauhtémoc</option>
+                <option value = "9">Chalchihuites</option>
+                <option value = "10">Fresnillo</option>
+                <option value = "11">Trinidad García de la Cadena</option>
+                <option value = "12">Genaro Codina</option>
+                <option value = "13">General Enrique Estrada</option>
+                <option value = "14">General Francisco R. Murguía</option>
+                <option value = "15">El Plateado de Joaquín Amaro</option>
+                <option value = "16">General Pánfilo Natera</option>
+                <option value = "17">Guadalupe</option>
+                <option value = "18">Huanusco</option>
+                <option value = "19">Jalpa</option>
+                <option value = "20">Jerez</option>
+                <option value = "21">Jiménez del Teul</option>
+                <option value = "22">Juan Aldama</option>
+                <option value = "23">Juchipila</option>
+                <option value = "24">Loreto</option>
+                <option value = "25">Luis Moya</option>
+                <option value = "26">Mazapil</option>
+                <option value = "27">Melchor Ocampo</option>
+                <option value = "28">Mezquital del Oro</option>
+                <option value = "29">Miguel Auza</option>
+                <option value = "30">Momax</option>
+                <option value = "31">Monte Escobedo</option>
+                <option value = "32">Morelos</option>
+                <option value = "33">Moyahua de Estrada</option>
+                <option value = "34">Nochistlán de Mejía</option>
+                <option value = "35">Noria de Ángeles</option>
+                <option value = "36">Ojocaliente</option>
+                <option value = "37">Pánuco</option>
+                <option value = "38">Pinos</option>
+                <option value = "39">Río Grande</option>
+                <option value = "40">Sain Alto</option>
+                <option value = "41">El Salvador</option>
+                <option value = "42">Sombrerete</option>
+                <option value = "43">Susticacán</option>
+                <option value = "44">Tabasco</option>
+                <option value = "45">Tepechitlán</option>
+                <option value = "46">Tepetongo</option>
+                <option value = "47">Teúl de González Ortega</option>
+                <option value = "48">Tlaltenango de Sánchez Román</option>
+                <option value = "49">Valparaíso</option>
+                <option value = "50">Vetagrande</option>
+                <option value = "51">Villa de Cos</option>
+                <option value = "52">Villa García</option>
+                <option value = "53">Villa González Ortega</option>
+                <option value = "54">Villa Hidalgo</option>
+                <option value = "55">Villanueva</option>
+                <option value = "56">Zacatecas</option>
+                <option value = "57">Trancoso</option>
+                <option value = "58">Santa María de la Paz</option>
             </select>
         </label>
     </p>
@@ -53,140 +100,11 @@ Búsqueda de Centros de Investigación
         <div id = "map"></div>
     </div>
 
-    <h4 class="text-center">Datos del Centro de Investigacion</h4>
 
-    <div class="row text-center">
-        <div class="col-4 box1 pt-4">
-                <i class="fas fa-phone fa-3x"></i>
-                <h3 class="d-none d-lg-block d-xl-block">Teléfono</h3>
-                <p class="d-none d-lg-block d-xl-block">
-                    {% for centro in centros %}
-                    <tr>
-                        <td><b>{{ centro.telefono }}</b></td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="2">
-                        <p>No existen datos</p>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </p>
-            </a>
-        </div>
-        <div class="col-4 box2 pt-4" >
-                <i class="fas fa-home fa-3x"></i>
-                <h3 class="d-none d-lg-block d-xl-block">Dirección</h3>
-                <p class="d-none d-lg-block d-xl-block">
-                    {% for centro in centros %}
-                    <tr>
-                        <td >
-                            <a onclick="return crearRuta();"
-                                type="button" class="btn btn-link fas fa-car"
-                                href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">{{ centro.calle }} {{ centro.numExterior }}, {{ centro.colonia }}, {{ centro.cp }}, {{ centro.municipio }}, {{ centro.estado }}
-                            </a>
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="2">
-                        <p>No existen datos</p>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </p>
-            </a>
-        </div>
-        <div class="col-4 box3 pt-4">
-                <i class="fas fa-envelope fa-3x"></i>
-                <h3 class="d-none d-lg-block d-xl-block">Datos</h3>
-                <p class="d-none d-lg-block d-xl-block">
-                    {% for centro in centros %}
-                    <tr>
-                        <td><b>{{ centro.nombreEncargado }}</b></td>
-                        <td><b>{{ centro.telefonoEncargado }}</b></td>
-                        <td><b>{{ centro.correoEncargado }}</b></td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="2">
-                        <p>No existen datos</p>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </p>
-            </a>
-        </div>
-    </div>
 </div>
 
 {% endblock contenido %}
 
 {% block scripts %}
-<script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjSQ168Tk_ohpBsiDZmVVbXp5jj7-DYrw&callback=initMap&v=weekly"
-        async
-></script>
-<script>
-
-    let marker;
-    let mun;
-    function initMap() {
-
-        var infoWindow = new google.maps.InfoWindow();
-        const map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 22.766050981989335, lng: -102.5697492675781 },
-            zoom: 10,
-        });
-
-        mun = document.getElementById('barra_busqueda').value;
-
-        {% for centro in centros %}
-
-            mun = mun.toString();
-            const datos =
-            '<div id="content">' +
-                '<div id="bodyContent">' +
-                    '<h5>{{centro.nombre}}</h5>' +
-                    '<p><b>Contacto</b></p>' +
-                    '<p>{{centro.telefono}}</p>' +
-                    '<p><b>Datos Responsable</b></p>' +
-                    '<p>{{centro.nombreEncargado}}, {{centro.telefonoEncargado}}, {{centro.correoEncargado}}</p>' +
-                    '<a onClick="return crearRuta();" ' +
-                    'type="button" className="btn btn-link fas fa-car"' +
-                    'href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">' +
-                    '{{centro.calle}} {{centro.numExterior}}, {{centro.colonia}}, {{centro.cp}}, {{centro.municipio}}, {{centro.estado}}' +
-                    "</a>" +
-                "</div>" +
-            "<div>";
-
-            if ('{{centro.municipio}}' == mun){
-                marker = new google.maps.Marker({
-                    map,
-                    position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
-                });
-
-                google.maps.event.addListener(marker, 'click', (function(marker){
-                    return function() {
-                        infoWindow.setContent(datos);
-                        infoWindow.open(map, marker);
-                        //Añadir que al darle click muestre los datos del centro en la parte de abajo
-                    }
-                })(marker))
-            }
-        {% endfor %}
-    }
-
-    function crearRuta() {
-        var item = document.getElementById('direccion').textContent;
-        alert(item);
-        if (item) {
-            window.open('https://google.com.mx/maps/place/' + item, '_blank');
-        }
-        return false;
-    }
-
-    window.initMap = initMap;
-
-</script>
+{% include 'mapas.html' %}
 {% endblock scripts %}

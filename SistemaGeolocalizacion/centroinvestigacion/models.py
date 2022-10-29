@@ -13,8 +13,8 @@ class CentroInvestigacion(models.Model):
         'Codigo Postal', max_length=5, null=False, blank=False)
     estado = models.CharField(
         'Estado', max_length=150, null=False, blank=False)
-    municipio = models.CharField(
-        'Municipio', max_length=150, null=False, blank=False)
+    municipio = models.ForeignKey("centroinvestigacion.Municipio", verbose_name="Municipio",
+        on_delete=models.DO_NOTHING, null=False, blank=False)
     latitud = models.CharField(max_length=20, unique=True, blank=False)
     longitud = models.CharField(max_length=20, unique=True, blank=False)
     telefono = models.CharField(
@@ -48,6 +48,12 @@ class Enfoque(models.Model):
 class Area(models.Model):
     nombre = models.CharField(
         max_length=150, unique=True, blank=False, null=False)
+
+    def __str__(self):
+        return self.nombre
+
+class Municipio(models.Model):
+    nombre = models.CharField(max_length=150, unique=True, blank=False, null=False)
 
     def __str__(self):
         return self.nombre

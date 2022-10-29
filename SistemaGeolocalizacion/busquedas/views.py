@@ -4,41 +4,11 @@ from django.db.models import Q
 
 # Create your views here.
 def obtener_centros(request):
+   # context['api_key'] = settings.GOOGLE_MAPS_API_KEY
    centros = CentroInvestigacion.objects.all()
    return render(request, "buscar_centro.html", {"centros": centros})
 
-
-
-'''
-def buscar_municipio(request, centros):
-    queryset = request.GET.get("buscar")
-    if queryset:
-        for queryset in centros:
-            centros = CentroInvestigacion.objects.filter(
-                Q(municipio__icontains=queryset)
-            ).distinct()
-
-    return render(request, "buscar_centro.html", {'centros': centros})
-
-
-def buscar_enfoque_desc(request):
-    queryset = request.GET.get("buscar")
-    enfoques = Enfoque.objects.filter()
-    if queryset:
-        enfoques = Enfoque.objects.filter(
-            Q(descripcion__icontains=queryset)
-        ).distinct()
-    
-    return render(request, "buscar_centro.html", {'enfoques':enfoques})
-
-def buscar_enfoque_area(request):
-    queryset = request.GET.get("buscar")
-    enfoques = Enfoque.objects.filter()
-    if queryset:
-        enfoques = Enfoque.objects.filter(
-            Q(area__icontains=queryset)
-        ).distinct()
-    
-    return render(request, "buscar_centro.html", {'enfoques':enfoques})
-    
-'''
+def get_context_data(self, **kwargs):
+   context = get_context_data(**kwargs)
+   context["municipio"] = Municipio.objects.all()
+   return context
