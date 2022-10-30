@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from centroinvestigacion.models import CentroInvestigacion, Enfoque
-from django.db.models import Q
+from django.conf import settings
+
+from centroinvestigacion.models import CentroInvestigacion, Municipio
 
 # Create your views here.
 def obtener_centros(request):

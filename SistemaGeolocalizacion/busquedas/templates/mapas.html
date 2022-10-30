@@ -1,0 +1,97 @@
+{% extends 'inicio.html' %}
+
+{% block headers %}
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style>
+    #map{
+        height: 546px;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+</style>
+
+{% endblock headers %}
+
+{% block scripts %}
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjSQ168Tk_ohpBsiDZmVVbXp5jj7-DYrw&callback=initMap&v=weekly"
+        async
+></script>
+<script>
+
+    let marker;
+    let mun;
+    var datos
+    let coords;
+    function initMap() {
+
+        var infoWindow = new google.maps.InfoWindow();
+        const map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 22.766050981989335, lng: -102.5697492675781 },
+            zoom: 10,
+        });
+
+        mun = document.getElementById('barra_busqueda').value;
+
+        {% for centro in centros %}
+
+            mun = mun.toString();
+
+            if ('{{centro.municipio}}'.toLowerCase() == mun.toLowerCase()){
+                marker = new google.maps.Marker({
+                    map,
+                    position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
+                });
+
+                google.maps.event.addListener(marker, 'click', (function(marker){
+                    coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
+                    return function() {
+                        console.log(coords);
+                        datos =
+                        '<div id="content">' +
+                            '<div id="bodyContent">' +
+                                '<h5>{{centro.nombre}}</h5>' +
+                                '<p><b>Teléfono de Contacto:</b></p>' +
+                                '<p>{{ centro.telefono }}</p>' +
+                                '<p><b>Datos Responsable:</b></p>' +
+                                '<p>{{centro.nombreEncargado}}, {{centro.telefonoEncargado}}, {{centro.correoEncargado}}</p>' +
+                                '<p><b>Dirección:</b></p>' +
+                                '<p  id="domicilio">{{centro.calle}} {{centro.numExterior}}, {{centro.colonia}}, {{centro.cp}}, {{centro.municipio}}, {{centro.estado}}</p>' +
+                                '<a onclick="return crearRuta(coords);" ' +
+                                'type="button" className="btn btn-link fas fa-car"' +
+                                'href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">' +
+                                '</br>' +
+                                'Como llegar' +
+                                "</a>" +
+                            "</div>" +
+                        "<div>";
+
+                        infoWindow.setContent(datos);
+                        infoWindow.open(map, marker);
+                        //Añadir que al darle click muestre los datos del centro en la parte de abajo
+                    }
+                })(marker))
+            }
+        {% endfor %}
+    }
+
+    function crearRuta() {
+        var item = document.getElementById('domicilio').textContent;
+        alert("Se redirige a " + item)
+        if (item) {
+            window.open('https://google.com.mx/maps/place/' + coords, '_blank');
+        }
+        return false;
+    }
+    
+    function mostrarMunicipios() {
+        
+    }
+
+    window.initMap = initMap;
+
+</script>
+{% endblock scripts %}
