@@ -16,7 +16,7 @@ class FormCentroInvestigacion(forms.ModelForm):
             'numExterior': forms.TextInput(attrs={'class': 'form-control'}),
             'cp': forms.TextInput(attrs={'class': 'form-control'}),                                                
             'estado': forms.TextInput(attrs={'class': 'form-control', 'value':'Zacatecas', 'readonly': 'true'}),
-            'municipio': forms.Select(attrs={'class': 'form-select'}),
+            'municipio': forms.Select(attrs={'class': 'form-control'}),
             'latitud': forms.TextInput(attrs={'class': 'form-control', 'readonly' : 'true'}),
             'longitud': forms.TextInput(attrs={'class': 'form-control', 'readonly': 'true'}),
             'telefono': forms.TextInput(attrs={'class': 'form-control'}),

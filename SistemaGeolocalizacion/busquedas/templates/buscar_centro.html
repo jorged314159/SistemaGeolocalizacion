@@ -19,7 +19,6 @@ Búsqueda de Centros de Investigación
                     <input type="text" class="form-control" placeholder="Nombre del centro o tema de interés..." name="buscar"
                            value="{{ request.GET.buscar }}" id="barra_busqueda">
                     <span class="input-group list">
-                        <i class="icon icon-search"></i>
                         <button type="submit" class="boton btn-success">Buscar</button>
                     </span>
                 </div>
@@ -28,11 +27,11 @@ Búsqueda de Centros de Investigación
     </nav>
     <p>
         <label>Filtros de búsqueda
-            <select id='filtro' class="form-control">
-                <option value=''>Selecciona una opción</option>
+            <select id='filtro' class="">
+                <option value=''>-Selecciona una opción-</option>
                 <option value='municipio'>Municipio</option>
             </select>
-            <select class = "form-control">
+            <select name ="municipios" class="" id="municipios" style="display: none;">
                 <option value = "0">-Selecciona una Opción-</option>
                 <option value = "1">Apozol</option>
                 <option value = "2">Apulco</option>

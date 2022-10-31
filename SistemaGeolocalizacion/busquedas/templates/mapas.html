@@ -16,6 +16,19 @@
 {% endblock headers %}
 
 {% block scripts %}
+<script>
+    const comboFiltro = document.getElementById('filtro');
+    const comboMuns = document.getElementById('municipios');
+
+    comboFiltro.addEventListener('change', function handleChange(event){
+       if(event.target.value == 'municipio'){
+           comboMuns.style.display = 'block';
+       } else {
+           comboMuns.style.display = 'none';
+       }
+    });
+</script>
+
 <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjSQ168Tk_ohpBsiDZmVVbXp5jj7-DYrw&callback=initMap&v=weekly"
         async
@@ -23,7 +36,8 @@
 <script>
 
     let marker;
-    let mun;
+    let munCentro;
+    let areaCentro;
     var datos
     let coords;
     function initMap() {
@@ -34,13 +48,17 @@
             zoom: 10,
         });
 
-        mun = document.getElementById('barra_busqueda').value;
+        nombreCentro = document.getElementById('barra_busqueda').value;
+        munCentro = document.getElementById('municipios').value;
+        areaCentro = document.getElementById('barra_busqueda').value;
+        // console.log("El municipio seleccionado es: " + munCentro);
 
         {% for centro in centros %}
 
-            mun = mun.toString();
+            nombreCentro = nombreCentro.toString();
+            areaCentro = areaCentro.toString();
 
-            if ('{{centro.municipio}}'.toLowerCase() == mun.toLowerCase()){
+            if (('{{centro.nombre}}'.toLowerCase() == nombreCentro.toLowerCase()) || (('{{centro.subAreaEnfoque}}'.toLowerCase() == areaCentro.toLowerCase()))){
                 marker = new google.maps.Marker({
                     map,
                     position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
@@ -48,6 +66,7 @@
 
                 google.maps.event.addListener(marker, 'click', (function(marker){
                     coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
+                    // console.log(coords);
                     return function() {
                         console.log(coords);
                         datos =
@@ -86,10 +105,7 @@
         }
         return false;
     }
-    
-    function mostrarMunicipios() {
-        
-    }
+
 
     window.initMap = initMap;
 
