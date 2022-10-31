@@ -65,9 +65,9 @@
                 });
 
                 google.maps.event.addListener(marker, 'click', (function(marker){
-                    coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
                     // console.log(coords);
                     return function() {
+                        coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
                         console.log(coords);
                         datos =
                         '<div id="content">' +
