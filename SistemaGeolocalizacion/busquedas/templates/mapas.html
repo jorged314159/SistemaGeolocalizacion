@@ -51,14 +51,18 @@
         nombreCentro = document.getElementById('barra_busqueda').value;
         munCentro = document.getElementById('municipios').value;
         areaCentro = document.getElementById('barra_busqueda').value;
+        subAreaCentro = document.getElementById('barra_busqueda').value;
         // console.log("El municipio seleccionado es: " + munCentro);
 
         {% for centro in centros %}
 
             nombreCentro = nombreCentro.toString();
             areaCentro = areaCentro.toString();
+            subAreaCentro = subAreaCentro.toString();
 
-            if (('{{centro.nombre}}'.toLowerCase() == nombreCentro.toLowerCase()) || (('{{centro.subAreaEnfoque}}'.toLowerCase() == areaCentro.toLowerCase()))){
+            if (('{{centro.nombre}}'.toLowerCase() == nombreCentro.toLowerCase())
+                || (('{{centro.subAreaEnfoque}}'.toLowerCase() == areaCentro.toLowerCase()))
+                || (('{{centro.areaEnfoque}}'.toLowerCase() == subAreaCentro.toLowerCase()))){
                 marker = new google.maps.Marker({
                     map,
                     position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
