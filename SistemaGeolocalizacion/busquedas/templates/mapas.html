@@ -68,15 +68,13 @@
                     // console.log(coords);
                     return function() {
                         coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
-                        console.log(coords);
+                        //console.log(coords);
                         datos =
                         '<div id="content">' +
                             '<div id="bodyContent">' +
                                 '<h5>{{centro.nombre}}</h5>' +
                                 '<p><b>Teléfono de Contacto:</b></p>' +
                                 '<p>{{ centro.telefono }}</p>' +
-                                '<p><b>Datos Responsable:</b></p>' +
-                                '<p>{{centro.nombreEncargado}}, {{centro.telefonoEncargado}}, {{centro.correoEncargado}}</p>' +
                                 '<p><b>Dirección:</b></p>' +
                                 '<p  id="domicilio">{{centro.calle}} {{centro.numExterior}}, {{centro.colonia}}, {{centro.cp}}, {{centro.municipio}}, {{centro.estado}}</p>' +
                                 '<a onclick="return crearRuta(coords);" ' +
@@ -93,13 +91,37 @@
                         //Añadir que al darle click muestre los datos del centro en la parte de abajo
                     }
                 })(marker))
+
+                google.maps.event.addListener(marker, 'click', (function(marker){
+                    const nombre = document.getElementById('nombreResponsable');
+                    const telefono = document.getElementById('telefonoResponsable');
+                    const email = document.getElementById('emailResponsable');
+                    const textNom = document.getElementById('nomResp');
+                    const textTel = document.getElementById('telResp');
+                    const textEmail = document.getElementById('emResp');
+                    const textContacto = document.getElementById('textContacto');
+
+                    return function(){
+                        nombre.style.display = 'block';
+                        telefono.style.display = 'block';
+                        email.style.display = 'block';
+                        textNom.style.display = 'block';
+                        textTel.style.display = 'block';
+                        textEmail.style.display = 'block';
+                        textContacto.style.display = 'block';
+
+                        nombre.value = "{{centro.nombreEncargado}}";
+                        telefono.value = "{{centro.telefonoEncargado}}";
+                        email.value = "{{centro.correoEncargado}}";
+                    }
+                })(marker))
             }
         {% endfor %}
     }
 
     function crearRuta() {
         var item = document.getElementById('domicilio').textContent;
-        alert("Se redirige a " + item)
+        //alert("Se redirige a " + item)
         if (item) {
             window.open('https://google.com.mx/maps/place/' + coords, '_blank');
         }

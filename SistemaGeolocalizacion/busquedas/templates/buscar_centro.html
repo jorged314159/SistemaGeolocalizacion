@@ -1,105 +1,139 @@
 {% extends 'inicio.html' %}
-
+{% load static %}
 {% block titulo %}
 Búsqueda de Centros de Investigación
 {% endblock titulo %}
 
 {% block headers %}
+
 {% endblock headers %}
 
 {% block contenido %}
+<div class="encabezado">
+    <img src="{% static 'build/images/logo-cozcyt.png' %}" class="imagenBusquedas">
+    <img src="{% static 'build/images/Logos Labsol 2022_Mesa de trabajo 1.png' %}" class="imagenBusquedas">
+    <h2 class="textoEncabezado">Mapa de los Centros de Investigación en el Estado de Zacatecas</h2>
+</div>
+<hr>
+<div class="text-center">
+    <div class="flex-container">
+        <div class="formulario">
+            <div>
+                <h4 class="encabezado2">Buscamos resolver problemas de gente zacatecana con investigadores e
+                    instituciones zacatecanas.</h4>
+            </div>
+            <form method="get">
+                <div class="buscarAlgo">
+                    <div class="barrabusqueda">
+                        <input type="text" class="form-control" name="buscar"
+                               placeholder="Nombre, Área o Subárea"
+                               value="{{ request.GET.buscar }}" id="barra_busqueda"/>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <br>
+                    Filtros de busqueda:
+                    <div>
+                        <select id='filtro' class="form-control">
+                            <option value=''>-Selecciona una opción-</option>
+                            <option value='municipio'>Municipio</option>
+                        </select>
+                        <br>
+                        <select name="municipios" class="form-control" id="municipios" style="display: none;">
+                            <option value="0">-Selecciona un municipio-</option>
+                            <option value="1">Apozol</option>
+                            <option value="2">Apulco</option>
+                            <option value="3">Atolinga</option>
+                            <option value="4">Benito Juárez</option>
+                            <option value="5">Calera</option>
+                            <option value="6">Cañitas de Felipe Pescador</option>
+                            <option value="7">Concepción del Oro</option>
+                            <option value="8">Cuauhtémoc</option>
+                            <option value="9">Chalchihuites</option>
+                            <option value="10">Fresnillo</option>
+                            <option value="11">Trinidad García de la Cadena</option>
+                            <option value="12">Genaro Codina</option>
+                            <option value="13">General Enrique Estrada</option>
+                            <option value="14">General Francisco R. Murguía</option>
+                            <option value="15">El Plateado de Joaquín Amaro</option>
+                            <option value="16">General Pánfilo Natera</option>
+                            <option value="17">Guadalupe</option>
+                            <option value="18">Huanusco</option>
+                            <option value="19">Jalpa</option>
+                            <option value="20">Jerez</option>
+                            <option value="21">Jiménez del Teul</option>
+                            <option value="22">Juan Aldama</option>
+                            <option value="23">Juchipila</option>
+                            <option value="24">Loreto</option>
+                            <option value="25">Luis Moya</option>
+                            <option value="26">Mazapil</option>
+                            <option value="27">Melchor Ocampo</option>
+                            <option value="28">Mezquital del Oro</option>
+                            <option value="29">Miguel Auza</option>
+                            <option value="30">Momax</option>
+                            <option value="31">Monte Escobedo</option>
+                            <option value="32">Morelos</option>
+                            <option value="33">Moyahua de Estrada</option>
+                            <option value="34">Nochistlán de Mejía</option>
+                            <option value="35">Noria de Ángeles</option>
+                            <option value="36">Ojocaliente</option>
+                            <option value="37">Pánuco</option>
+                            <option value="38">Pinos</option>
+                            <option value="39">Río Grande</option>
+                            <option value="40">Sain Alto</option>
+                            <option value="41">El Salvador</option>
+                            <option value="42">Sombrerete</option>
+                            <option value="43">Susticacán</option>
+                            <option value="44">Tabasco</option>
+                            <option value="45">Tepechitlán</option>
+                            <option value="46">Tepetongo</option>
+                            <option value="47">Teúl de González Ortega</option>
+                            <option value="48">Tlaltenango de Sánchez Román</option>
+                            <option value="49">Valparaíso</option>
+                            <option value="50">Vetagrande</option>
+                            <option value="51">Villa de Cos</option>
+                            <option value="52">Villa García</option>
+                            <option value="53">Villa González Ortega</option>
+                            <option value="54">Villa Hidalgo</option>
+                            <option value="55">Villanueva</option>
+                            <option value="56">Zacatecas</option>
+                            <option value="57">Trancoso</option>
+                            <option value="58">Santa María de la Paz</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <h3 id="textContacto" style="display: none;">Contacto</h3>
+                <div class="contacto">
+                    <div class="nombre">
+                        <div class="form-outline">
+                            <input type="text" id="nombreResponsable" class="form-control" disabled style="display: none;" />
+                            <label class="form-label" id="nomResp" for="nombreResponsable" style="display: none;">Nombre del responsable</label>
+                        </div>
+                    </div>
+                    <div class="telefono">
+                        <div class="form-outline">
+                            <input type="email" id="telefonoResponsable" class="form-control" disabled style="display: none;"/>
+                            <label class="form-label" id="telResp" for="telefonoResponsable" style="display: none;">Teléfono</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-outline mb-4">
+                    <input type="text" id="emailResponsable" class="form-control" disabled style="display: none;"/>
+                    <label class="form-label" id="emResp" for="emailResponsable" style="display: none;">Email</label>
+                </div>
+            </form>
+        </div>
 
-<div class="container-fluid">
-    <h1 class="text-center">Mapa de los Centros de Investigación en el Estado de Zacatecas</h1>
-    <h4 class="text-center">Buscamos resolver problemas de gente zacatecana con investigadores e instituciones zacatecanas.</h4>
-    <nav class="navbar navbar-light bg-light">
-        <form method="get">
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" class="form-control" placeholder="Nombre del centro o tema de interés..." name="buscar"
-                           value="{{ request.GET.buscar }}" id="barra_busqueda">
-                    <span class="input-group list">
-                        <button type="submit" class="boton btn-success">Buscar</button>
-                    </span>
+        <div class="mapa">
+            <div class="card">
+                <div class="card-body">
+                    <div id="map"></div>
                 </div>
             </div>
-        </form>
-    </nav>
-    <p>
-        <label>Filtros de búsqueda
-            <select id='filtro' class="">
-                <option value=''>-Selecciona una opción-</option>
-                <option value='municipio'>Municipio</option>
-            </select>
-            <select name ="municipios" class="" id="municipios" style="display: none;">
-                <option value = "0">-Selecciona una Opción-</option>
-                <option value = "1">Apozol</option>
-                <option value = "2">Apulco</option>
-                <option value = "3">Atolinga</option>
-                <option value = "4">Benito Juárez</option>
-                <option value = "5">Calera</option>
-                <option value = "6">Cañitas de Felipe Pescador</option>
-                <option value = "7">Concepción del Oro</option>
-                <option value = "8">Cuauhtémoc</option>
-                <option value = "9">Chalchihuites</option>
-                <option value = "10">Fresnillo</option>
-                <option value = "11">Trinidad García de la Cadena</option>
-                <option value = "12">Genaro Codina</option>
-                <option value = "13">General Enrique Estrada</option>
-                <option value = "14">General Francisco R. Murguía</option>
-                <option value = "15">El Plateado de Joaquín Amaro</option>
-                <option value = "16">General Pánfilo Natera</option>
-                <option value = "17">Guadalupe</option>
-                <option value = "18">Huanusco</option>
-                <option value = "19">Jalpa</option>
-                <option value = "20">Jerez</option>
-                <option value = "21">Jiménez del Teul</option>
-                <option value = "22">Juan Aldama</option>
-                <option value = "23">Juchipila</option>
-                <option value = "24">Loreto</option>
-                <option value = "25">Luis Moya</option>
-                <option value = "26">Mazapil</option>
-                <option value = "27">Melchor Ocampo</option>
-                <option value = "28">Mezquital del Oro</option>
-                <option value = "29">Miguel Auza</option>
-                <option value = "30">Momax</option>
-                <option value = "31">Monte Escobedo</option>
-                <option value = "32">Morelos</option>
-                <option value = "33">Moyahua de Estrada</option>
-                <option value = "34">Nochistlán de Mejía</option>
-                <option value = "35">Noria de Ángeles</option>
-                <option value = "36">Ojocaliente</option>
-                <option value = "37">Pánuco</option>
-                <option value = "38">Pinos</option>
-                <option value = "39">Río Grande</option>
-                <option value = "40">Sain Alto</option>
-                <option value = "41">El Salvador</option>
-                <option value = "42">Sombrerete</option>
-                <option value = "43">Susticacán</option>
-                <option value = "44">Tabasco</option>
-                <option value = "45">Tepechitlán</option>
-                <option value = "46">Tepetongo</option>
-                <option value = "47">Teúl de González Ortega</option>
-                <option value = "48">Tlaltenango de Sánchez Román</option>
-                <option value = "49">Valparaíso</option>
-                <option value = "50">Vetagrande</option>
-                <option value = "51">Villa de Cos</option>
-                <option value = "52">Villa García</option>
-                <option value = "53">Villa González Ortega</option>
-                <option value = "54">Villa Hidalgo</option>
-                <option value = "55">Villanueva</option>
-                <option value = "56">Zacatecas</option>
-                <option value = "57">Trancoso</option>
-                <option value = "58">Santa María de la Paz</option>
-            </select>
-        </label>
-    </p>
-
-    <div class="row">
-        <div id = "map"></div>
+        </div>
     </div>
-
-
 </div>
 
 {% endblock contenido %}
