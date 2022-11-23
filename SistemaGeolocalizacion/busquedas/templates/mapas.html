@@ -22,8 +22,8 @@
     for (var i = 0; i < tmpParams.length; i++) {
         var tmparr = tmpParams[i].split("=");
         var tmp = document.getElementsByName(tmparr[0])[0];
-        if (!!tmp){
-            document.getElementsByName(tmparr[0])[0].value = tmparr[1];
+        if (tmp){
+            document.getElementsByName(tmparr[0])[0].value = tmparr[1].replaceAll("+", " ");
         }
     }
 </script>
@@ -41,7 +41,7 @@
     let coords;
     let municipio;
     let munSelected;
-    let opciones;
+    let munSeleccionado;
     function initMap() {
 
         var infoWindow = new google.maps.InfoWindow();
@@ -52,14 +52,11 @@
 
         nombreCentro = document.getElementById('barra_busqueda').value;
         munCentro = document.getElementById('municipios');
+        munSeleccionado = document.getElementById('municipios').value;
         munSelected = munCentro.options[munCentro.selectedIndex].text;
-        opciones = document.getElementsByTagName('option');
         areaCentro = document.getElementById('barra_busqueda').value;
         subAreaCentro = document.getElementById('barra_busqueda').value;
-        //munSelected = opciones[munCentro.value-1];
 
-        //console.log(munCentro.value);
-        // console.log(munSelected);
 
         {% for centro in centros %}
 
@@ -69,9 +66,9 @@
             munSelected = munSelected.toString();
 
             if (('{{centro.nombre}}'.toLowerCase() == nombreCentro.toLowerCase())
-                || (('{{centro.subAreaEnfoque}}'.toLowerCase() == areaCentro.toLowerCase()))
-                || (('{{centro.areaEnfoque}}'.toLowerCase() == subAreaCentro.toLowerCase()))){
-                // console.log(munSelected + '{{centro.municipio}}');
+                || (('{{centro.subAreaEnfoque}}'.toLowerCase() == subAreaCentro.toLowerCase()))
+                || (('{{centro.areaEnfoque}}'.toLowerCase() == areaCentro.toLowerCase()))){
+
                 if('{{centro.municipio}}'.toLowerCase() == munSelected.toLowerCase()){
                     marker = new google.maps.Marker({
                         map,
@@ -79,10 +76,8 @@
                     });
 
                     google.maps.event.addListener(marker, 'click', (function(marker){
-                        // console.log(coords);
                         return function() {
                             coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
-                            //console.log(coords);
                             datos =
                             '<div id="content">' +
                                 '<div id="bodyContent">' +
@@ -102,7 +97,6 @@
 
                             infoWindow.setContent(datos);
                             infoWindow.open(map, marker);
-                            //Añadir que al darle click muestre los datos del centro en la parte de abajo
                         }
                     })(marker))
 
@@ -131,17 +125,15 @@
                     })(marker))
                 }
 
-                if (munSelected.toLowerCase() == "-Selecciona un municipio-") {
+                if (munSeleccionado == 0) {
                     marker = new google.maps.Marker({
                         map,
                         position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
                     });
 
                     google.maps.event.addListener(marker, 'click', (function(marker){
-                        // console.log(coords);
                         return function() {
                             coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
-                            //console.log(coords);
                             datos =
                             '<div id="content">' +
                                 '<div id="bodyContent">' +
@@ -161,7 +153,6 @@
 
                             infoWindow.setContent(datos);
                             infoWindow.open(map, marker);
-                            //Añadir que al darle click muestre los datos del centro en la parte de abajo
                         }
                     })(marker))
 
@@ -196,7 +187,7 @@
 
     function crearRuta() {
         var item = document.getElementById('domicilio').textContent;
-        //alert("Se redirige a " + item)
+        alert("Se redirige a " + item)
         if (item) {
             window.open('https://google.com.mx/maps/place/' + coords, '_blank');
         }

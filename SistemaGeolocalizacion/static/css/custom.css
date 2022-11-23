@@ -78,14 +78,14 @@ a:link{text-decoration:none;}
 }
 
 .imagenBusquedas{
-    width: 13%;
-    height: 17%;
+    width: 20%;
+    height: 25%;
     margin-top: 2%;
     margin-bottom: -2%;
 }
 
 .textoEncabezado{
-    margin-top: 2%;
+    margin-top: 4%;
     padding-left: 3%;
     margin-bottom: -2%;
 }
@@ -119,3 +119,4 @@ hr{
 .nombre{
     width: 48%;
 }
+
