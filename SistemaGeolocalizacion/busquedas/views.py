@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.conf import settings
 
 from centroinvestigacion.models import CentroInvestigacion, Municipio
+from centroinvestigacion.forms import FormCentroInvestigacion
 
 # Create your views here.
 def obtener_centros(request):

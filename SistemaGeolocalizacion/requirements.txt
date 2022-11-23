@@ -1,7 +1,7 @@
 python==3.10.4
-Django==4.0.2
+Django==4.0.6
 mysqlclient==2.1.0
-Pillow==9.0.1
+Pillow==9.2.0
 
 Como extra se requiere tener la API de Google Maps activa, se puede obtener en el siguiente enlace:
 https://cloud.google.com/

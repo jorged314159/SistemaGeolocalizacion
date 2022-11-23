@@ -16,30 +16,32 @@
 {% endblock headers %}
 
 {% block scripts %}
-<script>
-    const comboFiltro = document.getElementById('filtro');
-    const comboMuns = document.getElementById('municipios');
 
-    comboFiltro.addEventListener('change', function handleChange(event){
-       if(event.target.value == 'municipio'){
-           comboMuns.style.display = 'block';
-       } else {
-           comboMuns.style.display = 'none';
-       }
-    });
+<script>
+    var tmpParams = decodeURIComponent(window.location.search.substr(1)).split("&");
+    for (var i = 0; i < tmpParams.length; i++) {
+        var tmparr = tmpParams[i].split("=");
+        var tmp = document.getElementsByName(tmparr[0])[0];
+        if (!!tmp){
+            document.getElementsByName(tmparr[0])[0].value = tmparr[1];
+        }
+    }
 </script>
 
 <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjSQ168Tk_ohpBsiDZmVVbXp5jj7-DYrw&callback=initMap&v=weekly"
+        src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap&v=weekly"
         async
 ></script>
-<script>
+<script >
 
     let marker;
     let munCentro;
     let areaCentro;
     var datos
     let coords;
+    let municipio;
+    let munSelected;
+    let opciones;
     function initMap() {
 
         var infoWindow = new google.maps.InfoWindow();
@@ -49,76 +51,145 @@
         });
 
         nombreCentro = document.getElementById('barra_busqueda').value;
-        munCentro = document.getElementById('municipios').value;
+        munCentro = document.getElementById('municipios');
+        munSelected = munCentro.options[munCentro.selectedIndex].text;
+        opciones = document.getElementsByTagName('option');
         areaCentro = document.getElementById('barra_busqueda').value;
         subAreaCentro = document.getElementById('barra_busqueda').value;
-        // console.log("El municipio seleccionado es: " + munCentro);
+        //munSelected = opciones[munCentro.value-1];
+
+        //console.log(munCentro.value);
+        // console.log(munSelected);
 
         {% for centro in centros %}
 
             nombreCentro = nombreCentro.toString();
             areaCentro = areaCentro.toString();
             subAreaCentro = subAreaCentro.toString();
+            munSelected = munSelected.toString();
 
             if (('{{centro.nombre}}'.toLowerCase() == nombreCentro.toLowerCase())
                 || (('{{centro.subAreaEnfoque}}'.toLowerCase() == areaCentro.toLowerCase()))
                 || (('{{centro.areaEnfoque}}'.toLowerCase() == subAreaCentro.toLowerCase()))){
-                marker = new google.maps.Marker({
-                    map,
-                    position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
-                });
+                // console.log(munSelected + '{{centro.municipio}}');
+                if('{{centro.municipio}}'.toLowerCase() == munSelected.toLowerCase()){
+                    marker = new google.maps.Marker({
+                        map,
+                        position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
+                    });
 
-                google.maps.event.addListener(marker, 'click', (function(marker){
-                    // console.log(coords);
-                    return function() {
-                        coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
-                        //console.log(coords);
-                        datos =
-                        '<div id="content">' +
-                            '<div id="bodyContent">' +
-                                '<h5>{{centro.nombre}}</h5>' +
-                                '<p><b>Teléfono de Contacto:</b></p>' +
-                                '<p>{{ centro.telefono }}</p>' +
-                                '<p><b>Dirección:</b></p>' +
-                                '<p  id="domicilio">{{centro.calle}} {{centro.numExterior}}, {{centro.colonia}}, {{centro.cp}}, {{centro.municipio}}, {{centro.estado}}</p>' +
-                                '<a onclick="return crearRuta(coords);" ' +
-                                'type="button" className="btn btn-link fas fa-car"' +
-                                'href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">' +
-                                '</br>' +
-                                'Como llegar' +
-                                "</a>" +
-                            "</div>" +
-                        "<div>";
+                    google.maps.event.addListener(marker, 'click', (function(marker){
+                        // console.log(coords);
+                        return function() {
+                            coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
+                            //console.log(coords);
+                            datos =
+                            '<div id="content">' +
+                                '<div id="bodyContent">' +
+                                    '<h5>{{centro.nombre}}</h5>' +
+                                    '<p><b>Teléfono de Contacto:</b></p>' +
+                                    '<p>{{ centro.telefono }}</p>' +
+                                    '<p><b>Dirección:</b></p>' +
+                                    '<p  id="domicilio">{{centro.calle}} {{centro.numExterior}}, {{centro.colonia}}, {{centro.cp}}, {{centro.municipio}}, {{centro.estado}}</p>' +
+                                    '<a onclick="return crearRuta(coords);" ' +
+                                    'type="button" className="btn btn-link fas fa-car"' +
+                                    'href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">' +
+                                    '</br>' +
+                                    'Como llegar' +
+                                    "</a>" +
+                                "</div>" +
+                            "<div>";
 
-                        infoWindow.setContent(datos);
-                        infoWindow.open(map, marker);
-                        //Añadir que al darle click muestre los datos del centro en la parte de abajo
-                    }
-                })(marker))
+                            infoWindow.setContent(datos);
+                            infoWindow.open(map, marker);
+                            //Añadir que al darle click muestre los datos del centro en la parte de abajo
+                        }
+                    })(marker))
 
-                google.maps.event.addListener(marker, 'click', (function(marker){
-                    const nombre = document.getElementById('nombreResponsable');
-                    const telefono = document.getElementById('telefonoResponsable');
-                    const email = document.getElementById('emailResponsable');
-                    const textNom = document.getElementById('nomResp');
-                    const textTel = document.getElementById('telResp');
-                    const textEmail = document.getElementById('emResp');
-                    const textContacto = document.getElementById('textContacto');
+                    google.maps.event.addListener(marker, 'click', (function(marker){
+                        const nombre = document.getElementById('nombreResponsable');
+                        const telefono = document.getElementById('telefonoResponsable');
+                        const email = document.getElementById('emailResponsable');
+                        const textNom = document.getElementById('nomResp');
+                        const textTel = document.getElementById('telResp');
+                        const textEmail = document.getElementById('emResp');
+                        const textContacto = document.getElementById('textContacto');
 
-                    return function(){
-                        nombre.style.display = 'block';
-                        telefono.style.display = 'block';
-                        email.style.display = 'block';
-                        textNom.style.display = 'block';
-                        textTel.style.display = 'block';
-                        textEmail.style.display = 'block';
-                        textContacto.style.display = 'block';
+                        return function(){
+                            nombre.style.display = 'block';
+                            telefono.style.display = 'block';
+                            email.style.display = 'block';
+                            textNom.style.display = 'block';
+                            textTel.style.display = 'block';
+                            textEmail.style.display = 'block';
+                            textContacto.style.display = 'block';
 
-                        nombre.value = "{{centro.nombreEncargado}}";
-                        telefono.value = "{{centro.telefonoEncargado}}";
-                        email.value = "{{centro.correoEncargado}}";
-                    }
-                })(marker))
+                            nombre.value = "{{centro.nombreEncargado}}";
+                            telefono.value = "{{centro.telefonoEncargado}}";
+                            email.value = "{{centro.correoEncargado}}";
+                        }
+                    })(marker))
+                }
+
+                if (munSelected.toLowerCase() == "-Selecciona un municipio-") {
+                    marker = new google.maps.Marker({
+                        map,
+                        position: { lat: parseFloat({{ centro.latitud }}), lng: parseFloat({{ centro.longitud }}) },
+                    });
+
+                    google.maps.event.addListener(marker, 'click', (function(marker){
+                        // console.log(coords);
+                        return function() {
+                            coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
+                            //console.log(coords);
+                            datos =
+                            '<div id="content">' +
+                                '<div id="bodyContent">' +
+                                    '<h5>{{centro.nombre}}</h5>' +
+                                    '<p><b>Teléfono de Contacto:</b></p>' +
+                                    '<p>{{ centro.telefono }}</p>' +
+                                    '<p><b>Dirección:</b></p>' +
+                                    '<p  id="domicilio">{{centro.calle}} {{centro.numExterior}}, {{centro.colonia}}, {{centro.cp}}, {{centro.municipio}}, {{centro.estado}}</p>' +
+                                    '<a onclick="return crearRuta(coords);" ' +
+                                    'type="button" className="btn btn-link fas fa-car"' +
+                                    'href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">' +
+                                    '</br>' +
+                                    'Como llegar' +
+                                    "</a>" +
+                                "</div>" +
+                            "<div>";
+
+                            infoWindow.setContent(datos);
+                            infoWindow.open(map, marker);
+                            //Añadir que al darle click muestre los datos del centro en la parte de abajo
+                        }
+                    })(marker))
+
+                    google.maps.event.addListener(marker, 'click', (function(marker){
+                        const nombre = document.getElementById('nombreResponsable');
+                        const telefono = document.getElementById('telefonoResponsable');
+                        const email = document.getElementById('emailResponsable');
+                        const textNom = document.getElementById('nomResp');
+                        const textTel = document.getElementById('telResp');
+                        const textEmail = document.getElementById('emResp');
+                        const textContacto = document.getElementById('textContacto');
+
+                        return function(){
+                            nombre.style.display = 'block';
+                            telefono.style.display = 'block';
+                            email.style.display = 'block';
+                            textNom.style.display = 'block';
+                            textTel.style.display = 'block';
+                            textEmail.style.display = 'block';
+                            textContacto.style.display = 'block';
+
+                            nombre.value = "{{centro.nombreEncargado}}";
+                            telefono.value = "{{centro.telefonoEncargado}}";
+                            email.value = "{{centro.correoEncargado}}";
+                        }
+                    })(marker))
+                }
+
             }
         {% endfor %}
     }
