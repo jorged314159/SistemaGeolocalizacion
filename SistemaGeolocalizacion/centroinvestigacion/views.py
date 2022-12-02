@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.conf import settings
+
 from centroinvestigacion.models import Area, Enfoque, CentroInvestigacion
 from centroinvestigacion.forms import FormCentroInvestigacion
 from django.contrib.auth.decorators import login_required
@@ -50,6 +52,9 @@ class NuevoCentro(SuccessMessageMixin, LoginRequiredMixin, CreateView):
         if CentroInvestigacion.objects.filter(nombreEncargado=nombreEncargado).exists():
             raise forms.ValidationError('El nombre del encargado ya se encuentra registrado.')
         return nombreEncargado
+
+    def obtener_api(request):
+        return render(request, {'api_key': settings.GOOGLE_MAPS_API_KEY})
     
 
 
@@ -70,6 +75,9 @@ class EditarCentro(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         context["obj"] = CentroInvestigacion.objects.filter(pk=pk).first()
         return context
 
+    def obtener_api(request):
+        return render(request, {'api_key': settings.GOOGLE_MAPS_API_KEY})
+
 
 
 class EliminarCentro(LoginRequiredMixin, DeleteView):
@@ -88,5 +96,5 @@ def detalles_centros(request, id):
     if request.method == 'GET':
         centro = CentroInvestigacion.objects.get(id=id)
         # print(centro.nombre + centro.direccion)
-        return render(request, 'detalles_centro.html', {'centros': centro})
+        return render(request, 'detalles_centro.html', {'centros': centro, 'api_key':settings.GOOGLE_MAPS_API_KEY})
 

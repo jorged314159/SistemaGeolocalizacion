@@ -38,6 +38,7 @@
                 <th>Subarea</th>
                 <th>Página</th>
                 <th>Imagen</th>
+                <th>Logo</th>
             </tr>
         </thead>
         <tbody>
@@ -61,13 +62,18 @@
                 {% endif %}
                     
                 <td>
-                    
                     {% if centros.imagen %}
                         <img src = "{{centros.imagen.url}}" width = 100% alt = ""/>
                     {% else %}
                         <p>No existe imagen del centro de investigacion</p>
                     {% endif %}
-                        
+                </td>
+                <td>
+                    {% if centros.logotipo %}
+                        <img src = "{{centros.logotipo.url}}" width = 100% alt = ""/>
+                    {% else %}
+                        <p>No existe logo del centro de investigacion</p>
+                    {% endif %}
                 </td>
             </tr>
         </tbody>
@@ -105,7 +111,7 @@
 
 {% block scripts %}
 <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjSQ168Tk_ohpBsiDZmVVbXp5jj7-DYrw&callback=initMap&v=weekly"
+    src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap&v=weekly"
     async
 ></script>
 <script>
