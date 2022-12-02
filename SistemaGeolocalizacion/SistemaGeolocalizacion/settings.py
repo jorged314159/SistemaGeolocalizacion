@@ -120,7 +120,7 @@ STATICFILES_DIRS = (
 LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('bienvenida')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
-GOOGLE_MAPS_API_KEY = 'AIzaSyCjSQ168Tk_ohpBsiDZmVVbXp5jj7-DYrw'
+GOOGLE_MAPS_API_KEY = 'Sustituir por API KEY'
 
 
 #urls para archivos media de la base de datos
