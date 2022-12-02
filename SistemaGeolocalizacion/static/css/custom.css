@@ -120,3 +120,28 @@ hr{
     width: 48%;
 }
 
+#pie_pagina{
+    margin: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.licGpl{
+    display: flex;
+    justify-content: flex-start;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    margin: 1%;
+    width: 48%;
+    height: 50px;
+}
+
+.logoLabsol{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 10%;
+    margin-bottom: 2%;
+    margin: 1%;
+    width: 48%;
+    height: 50px;
+}

@@ -135,21 +135,25 @@
                         return function() {
                             coords = '{{centro.latitud}}' + ', ' + '{{centro.longitud}}';
                             datos =
-                            '<div id="content">' +
+                                '<div id="content">' +
                                 '<div id="bodyContent">' +
-                                    '<h5>{{centro.nombre}}</h5>' +
-                                    '<p><b>Teléfono de Contacto:</b></p>' +
-                                    '<p>{{ centro.telefono }}</p>' +
-                                    '<p><b>Dirección:</b></p>' +
-                                    '<p  id="domicilio">{{centro.calle}} {{centro.numExterior}}, {{centro.colonia}}, {{centro.cp}}, {{centro.municipio}}, {{centro.estado}}</p>' +
-                                    '<a onclick="return crearRuta(coords);" ' +
-                                    'type="button" className="btn btn-link fas fa-car"' +
-                                    'href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion">' +
-                                    '</br>' +
-                                    'Como llegar' +
-                                    "</a>" +
+                                '<h5>{{centro.nombre}}</h5>' +
+                                '<p><b>Área:</b></p>' +
+                                '<p>{{ centro.areaEnfoque }}</p>' +
+                                '<p><b>Subárea de especialización:</b></p>' +
+                                '<p>{{ centro.subAreaEnfoque }}</p>' +
+                                '<p><b>Teléfono de Contacto:</b></p>' +
+                                '<p>{{ centro.telefono }}</p>' +
+                                '<p><b>Dirección:</b></p>' +
+                                '<p  id="domicilio">{{centro.calle}} {{centro.numExterior}}, {{centro.colonia}}, {{centro.cp}}, {{centro.municipio}}, {{centro.estado}}</p>' +
+                                '<b><a onclick="return crearRuta(coords);" ' +
+                                'type="button" className="btn btn-link fas fa-car"' +
+                                'href="https://www.google.com.mx/maps/preview" target="_blank" id="direccion"></b>' +
+                                '</br>' +
+                                'Como llegar' +
+                                "</a>" +
                                 "</div>" +
-                            "<div>";
+                                "<div>";
 
                             infoWindow.setContent(datos);
                             infoWindow.open(map, marker);

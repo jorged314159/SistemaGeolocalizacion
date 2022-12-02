@@ -131,9 +131,14 @@ Búsqueda de Centros de Investigación
         </div>
     </div>
 </div>
-<footer class="compose-footer">
-          Desarrollado por: <img src="{% static 'build/images/Logos Labsol 2022_Mesa de trabajo 1.png' %}" width="120" class="img-responsive">
-</footer>
+<div class="flex-container" name="pie_pagina">
+    <div class="licGpl">
+        Desarrollado por: <img name = "gpl" src="{% static 'build/images/GPLv3_Logo.png' %}" class="img-responsive">
+    </div>
+    <div class="logoLabsol">
+        <img src="{% static 'build/images/Logos Labsol 2022_Mesa de trabajo 1.png' %}" class="img-responsive">
+    </div>
+</div>
 
 {% endblock contenido %}
 
