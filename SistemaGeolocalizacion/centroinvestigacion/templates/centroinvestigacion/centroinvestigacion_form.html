@@ -126,7 +126,7 @@
 
 {% block scripts %}
 <script
-    src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap&v=weekly"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjSQ168Tk_ohpBsiDZmVVbXp5jj7-DYrw&callback=initMap&v=weekly"
     async
 ></script>
 <script>
@@ -165,6 +165,7 @@
             var municipio = document.getElementById('id_municipio').value;
 
             var direccion = calle + ' ' + numero + ', ' + colonia + ', ' + cp + ', ' + estado + ', ' + municipio;
+            console.log(direccion);
             geocoder.geocode( { 'address': direccion}, function(results, status) {
                 if(status == 'OK'){
                     map.setCenter(results[0].geometry.location);
@@ -211,6 +212,7 @@
             var municipio = document.getElementById('id_municipio').value;
 
             var direccion = calle + ' ' + numero + ', ' + colonia + ', ' + cp + ', ' + estado + ', ' + municipio;
+            console.log(direccion);
             geocoder.geocode( { 'address': direccion}, function(results, status) {
                 if(status == 'OK'){
                     map.setCenter(results[0].geometry.location);

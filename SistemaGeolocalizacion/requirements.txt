@@ -3,14 +3,3 @@ Django==4.0.6
 mysqlclient==2.1.0
 Pillow==9.2.0
 
-Como extra se requiere tener la API de Google Maps activa, se puede obtener en el siguiente enlace:
-https://cloud.google.com/
-
-Se deben de habilitar los siguientes servicios:
- - Maps JavaScript API
- - Geocoding API
-
-
-El servicio de la API de Google Maps ofrece 3 meses de prueba gratuitos, al terminar el periodo o bien
-llegar al límite de consultas, en este caso 28800, se deberá de habilitar un método de pago para que
-la API no dejé de funcionar.
