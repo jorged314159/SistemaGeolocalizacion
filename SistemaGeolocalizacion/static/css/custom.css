@@ -145,3 +145,48 @@ hr{
     width: 48%;
     height: 50px;
 }
+
+.contenido{
+    display: flex;
+    flex-direction: column;
+}
+
+.textoError{
+    text-align: center;
+    background-color: #781005;
+    color: white;
+    margin-bottom: 1;
+}
+
+.pie_paginaError{
+    align-items: flex-end;
+    margin: 2%;
+    display: flex;
+}
+
+.encabezadoError{
+    display: flex;
+    margin: 3%;
+    margin-top: .5%;
+}
+
+.imagenError{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.imagenError .img-responsive{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 25%;
+    height: 350px;
+
+}

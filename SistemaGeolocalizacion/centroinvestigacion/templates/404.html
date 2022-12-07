@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
+    <link rel="stylesheet" href="{% static 'vendors/bootstrap/dist/js/bootstrap.js' %}"/>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    
+</head>
+<body>
+    <div class = "contenido">
+        <div class="encabezadoError">
+            <img src="{% static 'build/images/logo-cozcyt.png' %}" class="imagenBusquedas">
+        </div>
+        <div class = "textoError">
+            <h1>¡Página no encontrada!</h1>
+        </div>
+        <div class = "imagenError">
+            <div></div>
+            <img src="{% static 'build/images/404.png' %}" class="img-responsive">
+            <div></div>
+        </div>
+        <div class="pie_paginaError">
+            <div class="licGpl">
+                Desarrollado por: <img name = "gpl" src="{% static 'build/images/GPLv3_Logo.png' %}" class="img-responsive">
+            </div>
+            <div class="logoLabsol">
+                <img src="{% static 'build/images/Logos Labsol 2022_Mesa de trabajo 1.png' %}" class="img-responsive">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
