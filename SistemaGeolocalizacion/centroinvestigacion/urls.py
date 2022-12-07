@@ -2,6 +2,10 @@ from django.urls import path
 from centroinvestigacion import views, views_enfoque
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import handler404
+
+
+handler404 = 'centroinvestigacion.views.error_404'
 
 urlpatterns = [
     path('', views_enfoque.PaginaInicio.as_view(), name='bienvenida'),

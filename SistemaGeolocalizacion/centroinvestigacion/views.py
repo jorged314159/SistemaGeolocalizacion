@@ -98,3 +98,5 @@ def detalles_centros(request, id):
         # print(centro.nombre + centro.direccion)
         return render(request, 'detalles_centro.html', {'centros': centro, 'api_key':settings.GOOGLE_MAPS_API_KEY})
 
+def error_404(request, exception):
+    return render(request, '404.html')
