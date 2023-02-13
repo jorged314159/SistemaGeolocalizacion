@@ -4,7 +4,7 @@ dentro del estado de Zacatecas.
 
 ## Estructura del proyecto
 El sistema cuenta con diferentes directorios y archivos los cuales se muestran a continuación.
-PAra algunos de ellos se describe una pequeña descripción.
+Para algunos de ellos se da una pequeña descripción.
 ```bash
 ├───busquedas                                  # Módulo general de búsquedas de centros de investigación.
 │   │   admin.py
